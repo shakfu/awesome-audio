@@ -8,10 +8,6 @@
 
 * [edna](http://edna.sourceforge.net/) - an MP3 server, edna allows you to access your MP3 collection from any networked computer. The web pages are dynamically constructed, adjusting to directory structure and the files in those directories. This is much nicer than using simple directory indexing. Rather than directly serving up an MP3, the software serves up a playlist. This gets passed to your player (e.g. WinAmp) which turns around with an HTTP request to stream the MP3.
 
-* [Listen](http://listengnome.free.fr/) - Music management and playback for GNOME
-
-* [MediaCore](http://getmediacore.com) Audio/Podcast Player and CMS) - Web based CMS for music management in video, audio and podcast form. All audio, video, and podcasts added to the system are playable from any browser.
-
 * [MMA](http://www.mellowood.ca/mma/) - Musical Midi Accompaniment. If you follow the above link you will find that Pymprovisator is no longer developed due to the fact that there is this similar, but more powerful GPL Python software.
 
 * [Peyote](http://peyote.sourceforge.net/) - Peyote is an audio player with friendly MC-like interface. Peyote is designed specifically for work easy with cue sheets.
@@ -20,21 +16,12 @@
 
 * [Pymps](http://www.anti-particle.com/pymps.shtml) - Pymps is the PYthon Music Playing System - a web based mp3/ogg jukebox. It's written in Python and utilises the PostgreSQL database.
 
-* [MusicPlayer](http://albertz.github.com/music-player/) - MusicPlayer is a high-quality music player implemented in Python, using FFmpeg and PortAudio.
-
-* [Pymserv](http://home.gna.org/pymserv/) - PyMServ is a graphical client for mserv, a music server. It is written in Python using pygtk and gconf to store prefs.
-
 * [Pytone](http://www.luga.de/pytone/) - Pytone is a music jukebox written in Python with a curses based GUI. While providing advanced features like crossfading and multiple players, special emphasis is put on ease of use, turning PyTone into an ideal jukebox system for use at parties.
 
 * [Quod Libet](https://github.com/quodlibet/quodlibet/) - Quod Libet is a GTK+-based audio player written in Python. It lets you make playlists based on regular expressions. It lets you display and edit any tags you want in the file. And it lets you do this for all the file formats it supports -- Ogg Vorbis, FLAC, MP3, Musepack, and MOD.
 
-* [TheTurcanator](http://turcanator.tangentcode.com/) - a small midi piano tutor for windows and mac. Includes CoreMIDI wrapper written in pyrex.
-
-* [LinuxBand](http://linuxband.org/) - LinuxBand is a GUI front-end for MMA (Musical MIDI Accompaniment). Type in the chords, choose the groove and LinuxBand will play a musical accompaniment for you.
 
 ## Audio Convertors
-
-* [audio-convert-mod](http://www.diffingo.com/oss/audio-convert-mod/) - audio-convert-mod is a simple audio file converter that supports many formats. At just a right-click, you can convert any amount of music files to WAV, MP3, AAC, Ogg and more. audio-convert-mod was designed with the same principles as fwbackups - keeping things simple.
 
 * [SoundConverter](http://soundconverter.berlios.de) - SoundConverter is a simple audio file converter for the GNOME desktop, using GStreamer for conversion. It can read anything GStreamer has support for, and writes to WAV, MP3, AAC, Ogg or FLAC files.
 
@@ -43,15 +30,13 @@
 
 ### Music Notation
 
- * [Abjad](http://www.projectabjad.org/) - Abjad is a Python API for Formalized Score Control. Abjad is designed to help composers build up complex pieces of music notation in an iterative and incremental way. You can use Abjad to create a symbolic representation of all the notes, rests, staves, nested rhythms, beams, slurs and other notational elements in any score. Because Abjad wraps the powerful LilyPond music notation package, you can use Abjad to control extremely fine-grained typographic details of all elements of any score.
-
- * [Frescobaldi](http://www.frescobaldi.org/) - is a (http://lilypond.org/|LilyPond) music score editor written in Python using PyQt4 and PyKDE4. Clicking a button runs LilyPond on the current document and displays the PDF in a preview window. There are some nice editing tools and a powerful score wizard to quickly setup a template score.
+* [Frescobaldi](http://www.frescobaldi.org/) - is a (http://lilypond.org/|LilyPond) music score editor written in Python using PyQt4 and PyKDE4. Clicking a button runs LilyPond on the current document and displays the PDF in a preview window. There are some nice editing tools and a powerful score wizard to quickly setup a template score.
  
- * [mingus](http://code.google.com/p/mingus/) - mingus is an advanced music theory and notation package for Python. It can be used to play around with music theory, to build editors, educational tools and other applications that need to process music. It can also be used to create sheet music with LilyPond and do automated musicological analysis.
+* [mingus](http://code.google.com/p/mingus/) - mingus is an advanced music theory and notation package for Python. It can be used to play around with music theory, to build editors, educational tools and other applications that need to process music. It can also be used to create sheet music with LilyPond and do automated musicological analysis.
 
- * [Kodou](https://kodou.readthedocs.io) - Kodou is a small package for algorithmic music notation which runs on top of the LilyPond compiler. It has been designed with the goal of being as minimalistic as possible, yet allowing creation of complex musical structures. It's public API consists of only two objects: a class Part (representing a musical line which itself could be mono- or polyphonic) and a main processing function kodou. Kodou's main strength however lies in it's treatment of time: rhythm is not constructed dependent on duration, but from points (notes/chords) alongside of a  timeline and as such as a function of time. Setting variant durations other than the ones imposed by Kodou is possible.
+* [Kodou](https://kodou.readthedocs.io) - Kodou is a small package for algorithmic music notation which runs on top of the LilyPond compiler. It has been designed with the goal of being as minimalistic as possible, yet allowing creation of complex musical structures. It's public API consists of only two objects: a class Part (representing a musical line which itself could be mono- or polyphonic) and a main processing function kodou. Kodou's main strength however lies in it's treatment of time: rhythm is not constructed dependent on duration, but from points (notes/chords) alongside of a  timeline and as such as a function of time. Setting variant durations other than the ones imposed by Kodou is possible.
 
- * see also 'music21' below
+* see also 'music21' below
 
 
 ### Musical Analysis
@@ -59,8 +44,6 @@
 * [music21](http://web.mit.edu/music21/) - a toolkit developed at MIT for computational musicology, music theory, and generative composition. Provides expandable objects and methods for most common theoretical problems. Supports music import via MusicXML, Humdrum/Kern, Musedata, ABC, and MIDI, output via MusicXML, Lilypond, and MIDI, and can easily integrate with notation editors (Finale, Sibelius, or MuseScore) and other audio and DAW software (via MIDI).
 
 * [pcsets](http://code.google.com/p/pcsets/) - Pitch Class Sets are a mathematical model for analyzing and composing music.
-
-* [PyOracle](http://www.bitbucket.org/pucktronix/pyoracle) - Module for Audio Oracle and Factor Oracle Musical Analysis.
 
 
 ### Audio Analysis
@@ -77,7 +60,7 @@
 
 ## Ear Training
 
-* [GNU Solfege](http://www.solfege.org/) - GNU Solfege is a computer program written to help you practice ear training. It can be useful when practicing the simple and mechanical exercises.
+* [GNU Solfege](https://www.gnu.org/software/solfege/solfege.html) - GNU Solfege is a computer program written to help you practice ear training. It can be useful when practicing the simple and mechanical exercises.
 
 ## cSound
 
@@ -93,7 +76,7 @@
 
 * see also 'blue' below
 
-== Audio (Visual) Programming Frameworks ==
+## Audio (Visual) Programming Frameworks
 
 * [Peace Synthesizer Framework](http://peacedeveloper.appspot.com/) - "Peace Synthesizer Framework" is Cross Platform Scriptable Real-Time Visualization & Sound. It has internal and external real-time scriptable visualization and sound generation and also support Nintendo system [Famicom] - like sound Emulation for 8-bits style chiptune music.
 
@@ -111,22 +94,15 @@
 
 * [audiere](http://audiere.sourceforge.net/) - Audiere is a high-level audio API. It can play Ogg VorbisAU, MP3, FLACAS, uncompressed WAV, AIFF, MOD, S3M, XM, and ITAN files. For audio output, Audiere supports DirectSound or WinMM in Windows, OSS on Linux and Cygwin, and SGI AL on IRIX.
 
-* [audiolab](http://www.ar.media.kyoto-u.ac.jp/members/david/softwares/audiolab/) - audiolab is a small Python package (now part of (http://scikits.appspot.com/audiolab|scikits)) to import data from audio files to numpy arrays and export data from numpy arrays to audio files. It uses libsndfile from Erik Castro de Lopo for the underlying IO, which supports many different audio formats: http://www.mega-nerd.com/libsndfile/
-
-
 * [GStreamer Python Bindings](http://gstreamer.freedesktop.org/modules/gst-python.html) - GStreamer is a big multimedia library, it is very simple to use it with these python bindings. Many applications rely on it (Exaile, Pitivi, Jokosher, Listen usw.). Online documentation can be found on http://pygstdocs.berlios.de/
 
 * [improviser](http://improviser.onderstekop.nl/) - Automatic music generation software. Experiments in musical content generation.
-
-* [python-musical](http://code.google.com/p/python-musical/) - Python library for music theory, synthesis, and playback. Contains a collection of audio wave generators and filters powered by numpy. Also contains a pythonic music theory library for handling notes, chords, scales. Can load, save, and playback audio.
 
 * [LoopJam](http://loopjam.wordpress.com/) - Instant 1 click remixing of sample loops, able to boost your creativity and multiply your sample loop library. Remix audio loops on a slice level, apply up to 9 FX to individual slices or create countless versions using LJ's auto-remix feature (jam) which re-arranges the audio loop forming musical patterns.
 
 * [Loris](http://www.cerlsoundgroup.org/Loris/) - Loris is an Open Source C++ class library implementing analysis, manipulation, and synthesis of digitized sounds using the Reassigned Bandwidth-Enhanced Additive Sound Model. Loris supports modified resynthesis and manipulations of the model data, such as time- and frequency-scale modification and sound morphing. Loris includes support and wrapper code for building extension modules for various scripting languages (Python, Tcl, Perl).
 
 * [MusicKit](http://musickit.sourceforge.net/) - The MusicKit is an object-oriented software system for building music, sound, signal processing, and MIDI applications. It has been used in such diverse commercial applications as music sequencers, computer games, and document processors. Professors and students in academia have used the MusicKit in a host of areas, including music performance, scientific experiments, computer-aided instruction, and physical modeling. PyObjC is required to use this library in Python.
-
-* [pyao](http://ekyo.nerim.net/software/pyogg/index.html) - pyao provides Python bindings for (http://xiph.org/ao/|libao), a cross-platform audio output library. It supports audio output on Linux (OSS, ALSA, PulseAudio, esd), MacOS X, Windows, BSD and some more.
 
 * [pyAudio](http://people.csail.mit.edu/hubert/pyaudio/) - PyAudio provides Python bindings for PortAudio, the cross-platform audio I/O library. Using PyAudio, you can easily use Python to play and record audio on a variety of platforms. Seems to be a successor of fastaudio, a once popular binding for PortAudio
 
@@ -138,17 +114,11 @@
 
 * [pyo](http://code.google.com/p/pyo/) - pyo is a Python module containing classes for a wide variety of audio signal processing types. With pyo, user will be able to include signal processing chains directly in Python scripts or projects, and to manipulate them in real time through the interpreter. Tools in pyo module offer primitives, like mathematical operations on audio signal, basic signal processing (filters, delays, synthesis generators, etc.), but also complex algorithms to create sound granulation and others creative audio manipulations. pyo supports OSC protocol (Open Sound Control), to ease communications between softwares, and MIDI protocol, for generating sound events and controlling process parameters. pyo allows creation of sophisticated signal processing chains with all the benefits of a mature, and wildly used, general programming language.
 
-* [Zyne](http://code.google.com/p/zyne/) - Zyne is a Python modular synthesizer using pyo as its audio engine. Zyne comes with more than 10 builtin modules implementing different kind of synthesis engines and provides a simple API to create your own custom modules.
+* [Zyne](https://github.com/belangeo/zyne) - Zyne is a Python modular synthesizer using pyo as its audio engine. Zyne comes with more than 10 builtin modules implementing different kind of synthesis engines and provides a simple API to create your own custom modules.
 
 * [Soundgrain](http://code.google.com/p/soundgrain/) - Soundgrain is a graphical interface where users can draw and edit trajectories to control granular sound synthesis modules. Soundgrain is written with Python and WxPython and uses pyo as its audio engine.
 
-* [Pyper](http://andy.bigwhitebox.org/pyper/) - (Not updated since early 2005) Pyper is a musical development environment. It allows you to write Python scripts that generates music in real-time. Pyper uses QuickTime Musical Instruments for synthesis.
-
 * [pySonic](http://pysonic.sourceforge.net/) - (Not updated since 2005) pySonic is a Python wrapper around the high performance, cross platform, but closed source, (http://www.fmod.org/|FMOD sound library). You get all the benefits of the FMOD library, but in a Pythonic, object oriented package.
-
-* [PySndObj](http://sndobj.sourceforge.net/) - The Sound Object Library is an object-oriented audio processing library. It provides objects for synthesis and processing of sound that can be used to build applications for computer-generated music. The core code, including soundfile and text input/output, is fully portable across several platforms. Platform-specific code includes realtime audio IO and MIDI input support for Linux (OSS,ALSA and Jack), Windows (MME and ASIO), MacOS X (CoreAudio, but no MIDI at moment), Silicon Graphics (Irix) machines and any Open Sound System-supported UNIX. The SndObj library also exists as Python module, aka PySndObj. The programming principles for Python SndObj programming are similar to the ones used in C++. It is also possible to use the Python interpreter for on-the-fly synthesis programming.
- 
-* [PySynth](http://home.arcor.de/mdoege/pysynth/) - A simple music synthesizer.
 
 * [Snack](http://www.speech.kth.se/snack/) - (last update: December 2005) The Snack Sound Toolkit is designed to be used with a scripting language such as Tcl/Tk or Python. Using Snack you can create powerful multi-platform audio applications with just a few lines of code. Snack has commands for basic sound handling, such as playback, recording, file and socket I/O. Snack also provides primitives for sound visualization, e.g. waveforms and spectrograms. It was developed mainly to handle digital recordings of speech (being developped at the KTH music&speech department), but is just as useful for general audio. Snack has also successfully been applied to other one-dimensional signals. The combination of Snack and a scripting language makes it possible to create sound tools and applications with a minimum of effort. This is due to the rapid development nature of scripting languages. As a bonus you get an application that is cross-platform from start. It is also easy to integrate Snack based applications with existing sound analysis software.
 
@@ -164,16 +134,11 @@
 
 * [CSound](http://www.csounds.com/) / CsoundAC - Csound is a sound and music synthesis system, providing facilities for composition and performance over a wide range of platforms and for any style of music. The Csound orchestra language features over 1200 unit generators (called "opcodes") covering nearly every sound synthesis method and that the user can combine into "instruments" of unlimited complexity and flexibility. Csound 5 allows Python code to be called from or directly embedded into Csound orchestras. Additionally, the csnd Python extension module wraps the Csound API so that Csound can be embedded into Python applications. CsoundAC (for "Csound Algorithmic Composition") is a GUI front end to Csound with Python scripting and a Python module providing tools for the algorithmic generation or manipulation of Csound scores. (http://csound.sourceforge.net/|Csound on Sourceforge); (http://wiki.laptop.org/go/Csound-Python|Csound-Python) and (http://wiki.laptop.org/go/CSound|Csound) (some brief tutorials on the OLPC Wiki)
 
-
-* [Csound Routines](https://sourceforge.net/project/showfiles.php?group_id=156455&package_id=202823) - set of routines to manipulate and convert csound files
-
-* [PMask](http://web.tiscali.it/mupuxeddu/csound/index.html) - Python implementation of CMask, a stochastic event generator for Csound.
-
 ## MP3 stuff and Metadata editors
 
 * [eyed3](http://eyed3.nicfit.net/) - eyeD3 is a Python module and program for processing ID3 tags. Information about mp3 files (i.e bit rate, sample frequency, play time, etc.) is also provided. The formats supported are ID3 v1.0/v1.1 and v2.3/v2.4.
 
-* [mutagen](http://code.google.com/p/quodlibet/wiki/Development/Mutagen) - Mutagen is a Python module to handle audio metadata. It supports ASF, FLAC, M4A, Monkey's Audio, MP3, Musepack, Ogg FLAC, Ogg Speex, Ogg Theora, Ogg Vorbis, True Audio, WavPack and OptimFROG audio files. All versions of ID3v2 are supported, and all standard ID3v2.4 frames are parsed. It can read Xing headers to accurately calculate the bitrate and length of MP3s. ID3 and APEv2 tags can be edited regardless of audio format. It can also manipulate Ogg streams on an individual packet/page level.
+* [mutagen](https://github.com/quodlibet/mutagen) - Mutagen is a Python module to handle audio metadata. It supports ASF, FLAC, M4A, Monkey's Audio, MP3, Musepack, Ogg FLAC, Ogg Speex, Ogg Theora, Ogg Vorbis, True Audio, WavPack and OptimFROG audio files. All versions of ID3v2 are supported, and all standard ID3v2.4 frames are parsed. It can read Xing headers to accurately calculate the bitrate and length of MP3s. ID3 and APEv2 tags can be edited regardless of audio format. It can also manipulate Ogg streams on an individual packet/page level.
 
 * [ID3.py](http://id3-py.sourceforge.net) - This module allows one to read and manipulate so-called ID3 informational tags on MP3 files through an object-oriented Python interface.
 
@@ -184,8 +149,6 @@
 * [m3ute2](http://sourceforge.net/projects/m3ute2/) - m3ute2 is program for copying, moving, and otherwise organizing M3U playlists and directories. m3ute2 can also generate detailed reports about lists of files.
 
 * [mmpython](http://sourceforge.net/projects/mmpython/) - MMPython is a Media Meta Data retrieval framework. It retrieves metadata from mp3, ogg, avi, jpg, tiff and other file formats. Among others it thereby parses ID3v2, ID3v1, EXIF, IPTC and Vorbis data into an object oriented struture.
-
-* [KaaMetadata](http://doc.freevo.org/2.0/SourceDoc/KaaMetadata) Sucessor of MMPython.
 
 * [PyID3](http://github.com/myers/pyid3) - pyid3 is a pure Python library for reading and writing id3 tags (version 1.0, 1.1, 2.3, 2.4, readonly support for 2.2). What makes this better than all the others? Testing! This library has been tested against some 200+ MB of just tags.
 
@@ -199,13 +162,11 @@
 
 * [pyMIDI](https://sourceforge.net/projects/pymidi/) - Provides object oriented programmatic manipulation of MIDI streams. Using this framework, you can read MIDI files from disk, build new MIDI streams, process, or filter preexisting streams, and write your changes back to disk. If you install this package on a Linux platform with alsalib, you can take advantage of the ALSA kernel sequencer, which provides low latency scheduling and receiving of MIDI events. SWIG is required to compile the ALSA extension sequencer extension. Although OS-X and Windows provide similar sequencer facilities, the current version of the API does not yet support them. Some buggs are remaining in this package (for example when trying to delete a track), it has not been updated since 2006. This package is by Giles Hall. A sourceforge download.
 
-* [midi.py](http://groups.google.com/groups?hl=en&selm=3C0F67FE.96E7CAE8@alum.mit.edu) - (DEAD LINK) - Python MIDI classes: meaningful data structures that represent MIDI events and other objects. You can read MIDI files to create such objects, or generate a collection of objects and use them to write a MIDI file.
-
 * [MIDI.py](http://www.pjb.com.au/midi/MIDI.html) - This module offers functions: concatenate_scores(), grep(), merge_scores(), mix_scores(), midi2opus(), midi2score(), opus2midi(), opus2score(), play_score(), score2midi(), score2opus(), score2stats(), score_type(), segment(), timeshift() and to_millisecs(). Uses Python3. There is a call-compatible Lua module.
 
 * [PMIDI](http://sourceforge.net/projects/uncassist) - The PMIDI library allows the generation of short MIDI sequences in Python code.The interface allows a programmer to specify songs, instruments, measures, and notes. Playback is handled by the Windows MIDI stream API so proper playback timing is handled by the OS rather than by client code. The library is especially useful for generating earcons.
 
-* [portmidizero](http://gitorious.org/portmidizero/mainline/trees/master) - portmidizero is a simple ctypes wrapper for PortMidi in pure Python.
+* [protomidi](https://github.com/ptone/protomidi) - portmidizero is a simple ctypes wrapper for PortMidi in pure Python.
 
 * [PyChoReLib](http://chordrecognizer.sourceforge.net/) - Python Chord Recognition Library. This is a library that implements the transformation from a list of notenames to a chord name. The system can be taught new chords by example: tell it that ['c', 'e', 'g'] is called a 'C' chord, and using its built-in music knowledge it immediately recognizes all major triads in all keys and all inversions/permutations. Comes with a real-time midi-input demo program (needs PyPortMidi).
 
@@ -238,8 +199,6 @@
 * [fluidsynth-gui](http://sevkeifert.blogspot.com/2015/11/simple-graphical-interface-for.html) - Graphical User Interface for FluidSynth, and an alternative to Qsynth.
 
 ## Other protocols
-
-* [OSC.py](http://v00d00.k-hornz.de/pub/OSC.py) - Python classes for (http://cnmat.cnmat.berkeley.edu/OpenSoundControl/|OpenSoundControl) library client functionality. The OSC homepage is at http://opensoundcontrol.org
 
 * [Twisted-osc](http://bitbucket.org/arjan/twisted-osc/) - OSC Library for Twisted, an event-driven Python framework. It could really be ported to a non-Twisted framework as well, but is currently in the process of possibly become an official part of Twisted.
 
@@ -276,8 +235,6 @@
 * [Jokosher](http://www.jokosher.org/) - Jokosher is a simple yet powerful multi-track studio. With it you can create and record music, podcasts and more, all from an integrated simple environment. Jokosher is written in Python and uses the GNOME platform and the GTK widget set. The audio engine is powered by GStreamer, and we use Cairo for some of the graphics.
 
 * [Jeskola Buzz Modular](http://www.jeskola.net/buzz) - Buzz is a modular audio host that saw the beginning of it's development in 1997 leading the way in open plugin-format hosting (pre-VST) and a unique spin on modular routing using modules called Machines in the form of Generators, Effects, Control machines. Buzz's implementation of Python comes through the use of the Control plugin called PyBuzz, a fully customizable and assignable meta-editor created by Leonard Ritter (creator of the Lunar audio library and the Linux modular host, Aldrin). A discussion group can be found (http://www.buzzchurch.com|here)
-
-* [PyDAW](https://github.com/hcjamm/pydaw) - **DEPRECATED** - PyDAW is a powerful pattern-based DAW and plugin suite for producing electronic music.  The UI is written entirely in Python/PyQt, and the audio engine in C. 
 
 * [musikernel](https://github.com/j3ffhubb/musikernel) -- replacement project for `PyDaw`. MusiKernel is an all-in-one DAW and suite of instrument & effect plugins, designed to be easy to install and use without the need for any 3rd party software. Simply install the package for your operating system, select your audio and MIDI hardware, and start making music.
 
