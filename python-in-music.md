@@ -103,6 +103,8 @@
 
 ## Playing & creating sound
 
+* [pippi](https://github.com/luvsound/pippi) - Pippi is a library of computer music modules for python. It includes a few handy data structures for music like SoundBuffer & Wavetable, which are operator-overloaded to make working with sounds and control structures simpler. It also includes a lot of useful methods for doing common and not-so-common transformations to sounds and control structures.
+
 * [pydub](http://github.com/jiaaro/pydub) - Pydub is a simple and easy high level interface based on ffmpeg and influenced by jquery. It manipulates audio, adding effects, id3 tags, slicing, concatenating audio tracks. Supports python 2.6, 2.7, 3.2, 3.3
 
 * [Gensound](https://github.com/Quefumas/gensound) - Gensound, a lightweight and pythonic library for audio processing and synthesis, actively maintained and developed as of 2021. Features include advanced audio editing, audio effects, inputting melodies as strings, parametrization, multi-channel panning, time stretch, sample rate conversion. Only supports WAV format currently.
@@ -275,5 +277,12 @@
 
 * [Jeskola Buzz Modular](http://www.jeskola.net/buzz) - Buzz is a modular audio host that saw the beginning of it's development in 1997 leading the way in open plugin-format hosting (pre-VST) and a unique spin on modular routing using modules called Machines in the form of Generators, Effects, Control machines. Buzz's implementation of Python comes through the use of the Control plugin called PyBuzz, a fully customizable and assignable meta-editor created by Leonard Ritter (creator of the Lunar audio library and the Linux modular host, Aldrin). A discussion group can be found (http://www.buzzchurch.com|here)
 
-* [PyDAW](http://sourceforge.net/projects/libmodsynth/) - PyDAW is a powerful pattern-based DAW and plugin suite for producing electronic music.  The UI is written entirely in Python/PyQt, and the audio engine in C.
+* [PyDAW](https://github.com/hcjamm/pydaw) - **DEPRECATED** - PyDAW is a powerful pattern-based DAW and plugin suite for producing electronic music.  The UI is written entirely in Python/PyQt, and the audio engine in C. 
+
+* [musikernel](https://github.com/j3ffhubb/musikernel) -- replacement project for `PyDaw`. MusiKernel is an all-in-one DAW and suite of instrument & effect plugins, designed to be easy to install and use without the need for any 3rd party software. Simply install the package for your operating system, select your audio and MIDI hardware, and start making music.
+
+* [DawDreamer](https://github.com/DBraun/DawDreamer) -- DawDreamer is an audio-processing Python framework supporting core DAW features. Audio playback, VST MIDI instruments, VST effects, FAUST effects and polyphonic instruments, 
+Time-stretching and looping according to Ableton Live warp markers, Pitch-warping
+Parameter automation, Rendering multiple processors simultaneously. DawDreamer's foundation is JUCE, with a user-friendly Python interface thanks to pybind11. DawDreamer evolved from an earlier VSTi audio "renderer", RenderMan.
+
 
