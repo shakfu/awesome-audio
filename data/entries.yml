@@ -1,0 +1,392 @@
+entries:
+
+	- name: bespoke
+    category: daw
+    desc: A modular DAW for Mac, Windows, and Linux with python scripting.
+    url: http://www.bespokesynth.com
+    repo: https://github.com/awwbees/BespokeSynth
+
+  - name: aubio
+    category: analysis
+    desc: A library for audio and music analysis.
+    url: https://aubio.org
+    repo: https://github.com/aubio/aubio
+
+  - name: auditok
+    category: analysis
+    desc: An audio/acoustic activity detection and audio segmentation tool.
+    url:
+    repo: https://github.com/amsehili/auditok
+
+  - name: carat
+    category: analysis
+    desc: Computer-aided rhythm analysis toolbox.
+    url:
+    repo: https://github.com/mrocamora/carat
+
+  - name: chords2midi
+    category: sequencer
+    desc: Create MIDI files from numerical chord progressions.
+    url:
+    repo: https://github.com/Miserlou/chords2midi
+
+  - name: crepe
+    category: analysis
+    desc: A Convolutional REpresentation for Pitch Estimation.
+    url:
+    repo: https://github.com/marl/crepe
+
+  - name: csd
+    category: csound
+    desc: Csound CSD Preprocessor
+    url:
+    repo: https://github.com/jacobjoaquin/csd
+
+  - name: ctcsound
+    category: csound
+    desc: ctcsound is a Python module which wraps the C functions of the Csound API.
+    url: https://csound.com/docs/ctcsound/
+    repo: https://github.com/csound/ctcsound
+
+  - name: cython-sounddevice
+    category: portaudio
+    desc: Python bindings for the PortAudio library to interface with audio streams. This project was inspired by python-sounddevice, but uses Cython instead of CFFI.
+    url: https://cython-sounddevice.readthedocs.io/en/latest/
+    repo: https://github.com/nocarryr/cython-sounddevice
+
+  - name: foxdot
+    category: livecoding
+    desc: Python livecoding with supercollider
+    url: https://foxdot.org
+    repo: https://github.com/Qirky/FoxDot
+
+  - name: gum
+    category: editor
+    desc: Simple, hackable audio editor for Linux.
+    url:
+    repo: https://github.com/stackp/Gum
+
+  - name: resampy
+    category: resampling
+    desc: A python module for efficient time-series resampling
+    url: https://resampy.readthedocs.io/en/latest
+    repo: https://github.com/bmcfee/resampy
+
+  - name: librosa
+    category: analysis
+    desc: Python library for audio and music analysis
+    url: https://librosa.org
+    repo: https://github.com/librosa/librosa
+
+  - name: looper
+    category: looping
+    desc: A script for repeating music seamlessly and endlessly, designed with video game music in mind.
+    url: https://nolannicholson.com/2019/10/27/looping-music-seamlessly.html
+    repo: https://github.com/NolanNicholson/Looper
+
+  - name: macos_speech
+    category: speech
+    desc: Leverage the macOS builtin speech synthesis directly in python
+    url: https://pypi.org/project/macos-speech/
+    repo: https://github.com/tibOin/macos_speech
+
+  - name: osc_gen
+    category: wavetables
+    desc: Python package to create and manage oscillator wavetables.
+    url:
+    repo: https://github.com/harveyormston/osc_gen
+
+  - name: pymonome
+    category: monome
+    desc: Python library for interacting with monome devices.
+    url: 
+    repo: https://github.com/artfwo/pymonome
+
+  - name: pyo
+    category: dsp
+    desc: Pyo is a Python module written in C to help digital signal processing
+    url: http://ajaxsoundstudio.com/pyodoc/index.html
+    repo: https://github.com/belangeo/pyo
+
+  - name: pyrubberband
+    category: timestretching
+    desc: python wrapper for rubberband
+    url:
+    repo: https://github.com/bmcfee/pyrubberband
+
+  - name: supriya
+    category: supercollider
+    desc: A Python API for SuperCollider
+    url: http://josiahwolfoberholtzer.com/supriya/
+    repo: https://github.com/josiah-wolf-oberholtzer/supriya
+
+  - name: pippi
+    category: dsp
+    desc: Pippi is a library of computer music modules for python.
+    url: https://pippi.world
+    repo: https://github.com/luvsound/pippi
+
+  - name: signalflow
+    category: dsp
+    desc: An audio synthesis framework for Python and C++, designed for clear and concise expression of complex musical ideas
+    url:
+    repo: https://github.com/ideoforms/signalflow
+
+  - name: isobar
+    category: sequencer
+    desc: A Python library for creating and manipulating musical patterns, designed for use in algorithmic composition, generative music and sonification. Can be used to generate MIDI events, MIDI files, OSC messages, or custom events.
+    url:
+    repo: https://github.com/ideoforms/isobar
+
+  - name: pylive
+    category: ableton
+    desc: Query and control Ableton Live from Python
+    url:
+    repo: https://github.com/ideoforms/pylive
+
+  - name: https://github.com/irmen/pyminiaudio
+    category: audio-interface
+    desc: python interface to the miniaudio audio playback, recording, decoding and conversion library
+    url:
+    repo: https://github.com/irmen/pyminiaudio
+
+  - name: dawdreamer
+    category: daw
+    desc: Digital Audio Workstation with Python; VST instruments/effects, parameter automation, FAUST, Warp Markers, and JUCE processors
+    url:
+    repo: https://github.com/DBraun/DawDreamer
+
+  - name: cython-vst-loader
+    category: plugins
+    desc: a cython-based loader for VST audio plugins proving a clean python object-oriented interface
+    url:
+    repo: https://github.com/hq9000/cython-vst-loader
+
+  - name: py_headless_daw
+    category: daw
+    desc: A GUI-less DAW (Digital Audio Workstation) for producing electronic music using python
+    url:
+    repo: https://github.com/hq9000/py_headless_daw
+
+  - name: pedalboard
+    category: plugins
+    desc: A Python library for adding effects to audio.
+    url:
+    repo: https://github.com/spotify/pedalboard
+
+  - name: pysndfile
+    category: audio-interface
+    desc: Python interface to libsndfile
+    url:
+    repo: https://forge-2.ircam.fr/roebel/pysndfile
+
+  - name: pysndfx
+    category: fx
+    desc: Apply audio effects such as reverb and EQ directly to audio files or NumPy ndarrays.
+    url:
+    repo: https://github.com/carlthome/python-audio-effects
+
+  - name: python-sounddevice
+    category: audio-interface
+    desc: Play and Record Sound with Python
+    url: https://python-sounddevice.readthedocs.io
+    repo: https://github.com/spatialaudio/python-sounddevice
+
+  - name: random_audio
+    category: random
+    desc: A Python cli tool to generate a mash-up of audio clips
+    url:
+    repo: https://github.com/jhurricane96/random_audio
+
+  - name: renderman
+    category: plugins
+    desc: Command line C++ and Python VSTi Host library with MFCC, FFT, RMS and audio extraction and .wav writing.
+    url:
+    repo: https://github.com/fedden/RenderMan
+
+  - name: zignal
+    category: dsp
+    desc: Python audio signal processing library
+    url:
+    repo: https://github.com/ronnyandersson/zignal
+
+  - name: scaper
+    category: synthesis
+    desc: A library for soundscape synthesis and augmentation
+    url:
+    repo: https://github.com/justinsalamon/scaper
+
+  - name: soxbindings
+    category: utility
+    desc: Python bindings for SoX, aiming to replicate a subset of the command line sox utility.
+    url:
+    repo: https://github.com/pseeth/soxbindings
+
+  - name: soundcard
+    category: audio-interface
+    desc: A Pure-Python Real-Time Audio Library.
+    url: https://soundcard.readthedocs.io/en/latest/
+    repo: https://github.com/bastibe/SoundCard
+
+  - name: tones
+    category: synthesis
+    desc: Pure-python library for generating audio tones, with support for polyphony, pitch-bending and vibrato
+    url:
+    repo: https://github.com/eriknyquist/tones
+
+  - name: wav2vec
+    category: visualization
+    desc: Python package and cli tool to convert wave files (WAV or AIFF) to vector graphics (SVG, PostScript, CVS)
+    url:
+    repo: https://github.com/cristoper/wav2vec
+
+  - name: visual_midi
+    category: visualization
+    desc: Converts a pretty midi sequence to a bokeh plot.
+    url: https://alexandredubreuil.com/publications/2020-09-13-introducing-visual-midi-for-pianoroll-visualization/
+    repo: https://github.com/dubreuia/visual_midi
+
+  - name: aiotone
+    category: sequencer
+    desc: A demo of using AsyncIO for music sequencing
+    url:
+    repo: https://github.com/ambv/aiotone
+
+  - name: timestretch
+    category: timestretching
+    desc: The NessStretch is a refinement of Paul Nasca's excellent PaulStretch algorithm. PaulStretch uses a single frame size throughout the entire frequency range. The NessStretch's layered analysis bands are a better match for human frequency perception, and do a better job of resolving shorter, noisier high-frequency sounds (sibilance, snares, etc.).
+    url:
+    repo: https://github.com/spluta/TimeStretch
+
+  - name: python-supercollider
+    category: supercollider
+    desc: Python client for the SuperCollider audio synthesis server
+    url:
+    repo: https://github.com/ideoforms/python-supercollider
+
+  - name: csound-expression
+    category: haskell-csound
+    desc: Csound-expression is a framework for creation of computer music. It's a Haskell library to make Csound much more friendly. It generates Csound files out of Haskell code.
+    url: https://hackage.haskell.org/package/csound-expression
+    repo: https://github.com/spell-music/csound-expression
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
+  - name:
+    category:
+    desc:
+    url:
+    repo:
+
