@@ -1,6 +1,6 @@
 entries:
 
-	- name: bespoke
+  - name: bespoke
     category: daw
     desc: A modular DAW for Mac, Windows, and Linux with python scripting.
     url: http://www.bespokesynth.com
