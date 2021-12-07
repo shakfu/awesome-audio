@@ -6,7 +6,7 @@ import yaml
 PATTERN = r'^\* \[(\w+)\]\((.+)\) - (.*)'
 
 
-with open('python-in-music.md') as f:
+with open('research/python-in-music.md') as f:
     lines = f.readlines()
 
 p = re.compile(PATTERN)
