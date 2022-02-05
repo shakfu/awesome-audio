@@ -282,17 +282,17 @@ entries:
     url: http://essentia.upf.edu
     repo: https://github.com/MTG/essentia
 
-  - name:
-    category:
-    desc:
+  - name: audiohit
+    category: cli-sample-utility
+    desc: Rust-based CLI for batch processing audio samples.
     url:
-    repo:
+    repo: https://github.com/icaroferre/AudioHit
 
-  - name:
-    category:
-    desc:
-    url:
-    repo:
+  - name: dplug
+    category: audio-plugin-framework
+    desc: Audio plugin framework. VST2/VST3/AU/AAX/LV2 for Linux/macOS/Windows.
+    url: https://dplug.org
+    repo: https://github.com/AuburnSounds/Dplug
 
   - name:
     category:
