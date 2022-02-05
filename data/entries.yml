@@ -294,11 +294,11 @@ entries:
     url: https://dplug.org
     repo: https://github.com/AuburnSounds/Dplug
 
-  - name:
-    category:
-    desc:
+  - name: sox-tricks
+    category: sox-shortcuts
+    desc: Command line tools that make batch processing, editing and organization of audio files a fast and painless task. Based on the SoX audio tool.
     url:
-    repo:
+    repo: https://github.com/madskjeldgaard/sox-tricks
 
   - name:
     category:
