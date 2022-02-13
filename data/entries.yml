@@ -300,11 +300,11 @@ entries:
     url:
     repo: https://github.com/madskjeldgaard/sox-tricks
 
-  - name:
-    category:
-    desc:
-    url:
-    repo:
+  - name: ch0p1n
+    category: algorithmic-music
+    desc: Python package for automatic musical composition.
+    url: https://flujoo.github.io/en/my-approach-to-automatic-musical-composition
+    repo: https://github.com/flujoo/ch0p1n
 
   - name:
     category:
