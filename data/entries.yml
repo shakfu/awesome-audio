@@ -306,11 +306,11 @@ entries:
     url: https://flujoo.github.io/en/my-approach-to-automatic-musical-composition
     repo: https://github.com/flujoo/ch0p1n
 
-  - name:
-    category:
-    desc:
-    url:
-    repo:
+  - name: python-soundfile
+    category: python-sound-io
+    desc: The soundfile module is an audio library based on libsndfile, CFFI and NumPy.
+    url: https://python-soundfile.readthedocs.io
+    repo: https://github.com/bastibe/python-soundfile
 
   - name:
     category:
