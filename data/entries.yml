@@ -47,13 +47,13 @@
   repo: https://github.com/csound/ctcsound
 
 - name: cython-sounddevice
-  category: portaudio
+  category: audio-interface
   desc: Python bindings for the PortAudio library to interface with audio streams. This project was inspired by python-sounddevice, but uses Cython instead of CFFI.
   url: https://cython-sounddevice.readthedocs.io/en/latest/
   repo: https://github.com/nocarryr/cython-sounddevice
 
 - name: foxdot
-  category: livecoding
+  category: supercollider
   desc: Python livecoding with supercollider
   url: https://foxdot.org
   repo: https://github.com/Qirky/FoxDot
@@ -263,37 +263,37 @@
   repo: https://github.com/ideoforms/python-supercollider
 
 - name: csound-expression
-  category: haskell-csound
+  category: csound
   desc: Csound-expression is a framework for creation of computer music. It's a Haskell library to make Csound much more friendly. It generates Csound files out of Haskell code.
   url: https://hackage.haskell.org/package/csound-expression
   repo: https://github.com/spell-music/csound-expression
 
 - name: audiomentations
-  category: python-audio-augmentation
+  category: augmentation
   desc: A Python library for audio data augmentation. Inspired by albumentations. Useful for machine learning.
   url:
   repo: https://github.com/iver56/audiomentations 
 
 - name: essentia
-  category: audio-analysis-synthesis
+  category: analysis
   desc: C++ library for audio and music analysis, description and synthesis, including Python bindings.
   url: http://essentia.upf.edu
   repo: https://github.com/MTG/essentia
 
 - name: audiohit
-  category: cli-sample-utility
+  category: utility
   desc: Rust-based CLI for batch processing audio samples.
   url:
   repo: https://github.com/icaroferre/AudioHit
 
 - name: dplug
-  category: audio-plugin-framework
+  category: plugins
   desc: Audio plugin framework. VST2/VST3/AU/AAX/LV2 for Linux/macOS/Windows.
   url: https://dplug.org
   repo: https://github.com/AuburnSounds/Dplug
 
 - name: sox-tricks
-  category: sox-shortcuts
+  category: utility
   desc: Command line tools that make batch processing, editing and organization of audio files a fast and painless task. Based on the SoX audio tool.
   url:
   repo: https://github.com/madskjeldgaard/sox-tricks
@@ -305,7 +305,7 @@
   repo: https://github.com/flujoo/ch0p1n
 
 - name: python-soundfile
-  category: python-sound-io
+  category: audio-interface
   desc: The soundfile module is an audio library based on libsndfile, CFFI and NumPy.
   url: https://python-soundfile.readthedocs.io
   repo: https://github.com/bastibe/python-soundfile
