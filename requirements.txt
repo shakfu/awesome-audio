@@ -1,3 +1,8 @@
+mkdocs
 sqlalchemy
 jinja2
-webloc
+pyyaml
+
+
+# optional for collection
+# webloc
