@@ -1,15 +1,4 @@
-- name: bluemindo
-  url: http://bluemindo.codingteam.net/
-  desc: Bluemindo is a really simple but powerful audio player in Python/PyGTK, using
-    Gstreamer. Bluemindo is a free (as in freedom) software, released under GPLv3,
-    only.
-  category: ''
-  keywords: ''
-- name: cplay
-  url: https://github.com/holizz/cplay
-  desc: a curses front-end for various audio players
-  category: ''
-  keywords: ''
+
 - name: edna
   url: http://edna.sourceforge.net/
   desc: an MP3 server, edna allows you to access your MP3 collection from any networked
@@ -19,35 +8,25 @@
     This gets passed to your player (e.g. WinAmp) which turns around with an HTTP
     request to stream the MP3.
   category: ''
-  keywords: ''
+
 - name: mma
   url: http://www.mellowood.ca/mma/
-  desc: Musical Midi Accompaniment. If you follow the above link you will find that
-    Pymprovisator is no longer developed due to the fact that there is this similar,
-    but more powerful GPL Python software.
+  desc: Musical Midi Accompaniment. MMA generates standard MIDI
+   files which can be used as backup tracks for a soloist plus much, much more!
   category: ''
-  keywords: ''
+
 - name: peyote
   url: http://peyote.sourceforge.net/
-  desc: Peyote is an audio player with friendly MC-like interface. Peyote is designed
-    specifically for work easy with cue sheets.
+  desc: Peyote is an audio player with friendly MC-like interface. Peyote is designed specially
+    for easy listening a lossless music (especially with cue sheets). 
   category: ''
-  keywords: ''
-- name: pymprovisator
-  url: http://pymprovisator.sourceforge.net/
-  desc: 'Pymprovisator is a program that emulates the program Band in a Box from PG
-    Music. You can think in it like the electronic version of the books+CD from Jamey
-    Aebersold. You set the basic parameters in a song: title, style, key, chords sequence,...
-    and the program will generate a Midi file with the correct accompaniment. (dev
-    suspended)'
-  category: ''
-  keywords: ''
+
 - name: pymps
   url: http://www.anti-particle.com/pymps.shtml
   desc: Pymps is the PYthon Music Playing System - a web based mp3/ogg jukebox. It's
     written in Python and utilises the PostgreSQL database.
   category: ''
-  keywords: ''
+
 - name: pytone
   url: http://www.luga.de/pytone/
   desc: Pytone is a music jukebox written in Python with a curses based GUI. While
@@ -55,14 +34,14 @@
     is put on ease of use, turning PyTone into an ideal jukebox system for use at
     parties.
   category: ''
-  keywords: ''
+
 - name: soundconverter
   url: http://soundconverter.berlios.de
   desc: SoundConverter is a simple audio file converter for the GNOME desktop, using
     GStreamer for conversion. It can read anything GStreamer has support for, and
     writes to WAV, MP3, AAC, Ogg or FLAC files.
   category: ''
-  keywords: ''
+
 - name: frescobaldi
   url: http://www.frescobaldi.org/
   desc: is a [lilypond](http://lilypond.org/|LilyPond) music score editor written
@@ -70,7 +49,7 @@
     document and displays the PDF in a preview window. There are some nice editing
     tools and a powerful score wizard to quickly setup a template score.
   category: ''
-  keywords: ''
+
 - name: mingus
   url: http://code.google.com/p/mingus/
   desc: mingus is an advanced music theory and notation package for Python. It can
@@ -78,7 +57,7 @@
     and other applications that need to process music. It can also be used to create
     sheet music with LilyPond and do automated musicological analysis.
   category: ''
-  keywords: ''
+
 - name: kodou
   url: https://kodou.readthedocs.io
   desc: 'Kodou is a small package for algorithmic music notation which runs on top
@@ -91,7 +70,7 @@
     and as such as a function of time. Setting variant durations other than the ones
     imposed by Kodou is possible.'
   category: ''
-  keywords: ''
+
 - name: music21
   url: http://web.mit.edu/music21/
   desc: a toolkit developed at MIT for computational musicology, music theory, and
@@ -101,19 +80,19 @@
     with notation editors (Finale, Sibelius, or MuseScore) and other audio and DAW
     software (via MIDI).
   category: ''
-  keywords: ''
+
 - name: pcsets
   url: http://code.google.com/p/pcsets/
   desc: Pitch Class Sets are a mathematical model for analyzing and composing music.
   category: ''
-  keywords: ''
+
 - name: friture
   url: http://friture.org
   desc: Friture is a graphical program designed to do time-frequency analysis on audio
     input in real-time. It provides a set of visualization widgets to display audio
     data, such as a scope, a spectrum analyser, a rolling 2D spectrogram.
   category: ''
-  keywords: ''
+
 - name: libxtract
   url: https://github.com/jamiebullock/LibXtract/
   desc: LibXtract is a simple, portable, lightweight library of audio feature extraction
@@ -121,27 +100,27 @@
     of feature extraction primatives that are designed to be 'cascaded' to create
     a extraction hierarchies.
   category: ''
-  keywords: ''
+
 - name: yaafe
   url: http://yaafe.sourceforge.net/
   desc: Yet Another Audio Feature Extractor is a toolbox for audio analysis. Easy
     to use and efficient at extracting a large number of audio features simultaneously.
     WAV and MP3 files supported, or embedding in C++, Python or Matlab applications.
   category: ''
-  keywords: ''
+
 - name: aubio
   url: http://aubio.org/
   desc: Aubio is a tool designed for the extraction of annotations from audio signals.
     Its features include segmenting a sound file before each of its attacks, performing
     pitch detection, tapping the beat and producing midi streams from live audio.
   category: ''
-  keywords: ''
+
 - name: librosa
   url: http://github.com/bmcfee/librosa
   desc: A python module for audio and music analysis. It is easy to use, and implements
     many commonly used features for music analysis.
   category: ''
-  keywords: ''
+
 - name: athenacl
   url: http://www.flexatone.net/athena.html
   desc: modular, polyphonic, poly-paradigm algorithmic music composition in an interactive
@@ -151,19 +130,19 @@
     tools, multiple-format graphical outputs, and musical output in Csound, MIDI,
     audio file, XML, and text formats.
   category: ''
-  keywords: ''
+
 - name: cabel
   url: http://cabel.sourceforge.net/install.html
   desc: Visual way to create csound instruments.
   category: ''
-  keywords: ''
+
 - name: hypersonic
   url: http://arrowtheory.com/software/hypersonic/index.html
   desc: Hypersonic is for building and manipulating sound processing pipelines. It
     is designed for real-time control. It includes objects for oscillators, filters,
     file-io, soundcard and memory operations.
   category: ''
-  keywords: ''
+
 - name: pippi
   url: https://github.com/luvsound/pippi
   desc: Pippi is a library of computer music modules for python. It includes a few
@@ -172,14 +151,14 @@
     lot of useful methods for doing common and not-so-common transformations to sounds
     and control structures.
   category: ''
-  keywords: ''
+
 - name: pydub
   url: http://github.com/jiaaro/pydub
   desc: Pydub is a simple and easy high level interface based on ffmpeg and influenced
     by jquery. It manipulates audio, adding effects, id3 tags, slicing, concatenating
     audio tracks. Supports python 2.6, 2.7, 3.2, 3.3
   category: ''
-  keywords: ''
+
 - name: gensound
   url: https://github.com/Quefumas/gensound
   desc: Gensound, a lightweight and pythonic library for audio processing and synthesis,
@@ -187,7 +166,7 @@
     editing, audio effects, inputting melodies as strings, parametrization, multi-channel
     panning, time stretch, sample rate conversion. Only supports WAV format currently.
   category: ''
-  keywords: ''
+
 - name: audiere
   url: http://audiere.sourceforge.net/
   desc: Audiere is a high-level audio API. It can play Ogg VorbisAU, MP3, FLACAS,
@@ -195,12 +174,12 @@
     supports DirectSound or WinMM in Windows, OSS on Linux and Cygwin, and SGI AL
     on IRIX.
   category: ''
-  keywords: ''
+
 - name: improviser
   url: http://improviser.onderstekop.nl/
   desc: Automatic music generation software. Experiments in musical content generation.
   category: ''
-  keywords: ''
+
 - name: loopjam
   url: http://loopjam.wordpress.com/
   desc: Instant 1 click remixing of sample loops, able to boost your creativity and
@@ -208,7 +187,7 @@
     to 9 FX to individual slices or create countless versions using LJ's auto-remix
     feature (jam) which re-arranges the audio loop forming musical patterns.
   category: ''
-  keywords: ''
+
 - name: loris
   url: http://www.cerlsoundgroup.org/Loris/
   desc: Loris is an Open Source C++ class library implementing analysis, manipulation,
@@ -218,7 +197,7 @@
     includes support and wrapper code for building extension modules for various scripting
     languages (Python, Tcl, Perl).
   category: ''
-  keywords: ''
+
 - name: musickit
   url: http://musickit.sourceforge.net/
   desc: The MusicKit is an object-oriented software system for building music, sound,
@@ -228,7 +207,7 @@
     music performance, scientific experiments, computer-aided instruction, and physical
     modeling. PyObjC is required to use this library in Python.
   category: ''
-  keywords: ''
+
 - name: pyaudio
   url: http://people.csail.mit.edu/hubert/pyaudio/
   desc: PyAudio provides Python bindings for PortAudio, the cross-platform audio I/O
@@ -236,7 +215,7 @@
     a variety of platforms. Seems to be a successor of fastaudio, a once popular binding
     for PortAudio
   category: ''
-  keywords: ''
+
 - name: pyfluidsynth
   url: http://code.google.com/p/pyfluidsynth
   desc: Python bindings for FluidSynth, a MIDI synthesizer that uses SoundFont instruments.
@@ -247,7 +226,7 @@
     can either be used to play audio itself, or you can call a function that returns
     chunks of audio data and output the data to the soundcard yourself.
   category: ''
-  keywords: ''
+
 - name: pygame
   url: http://pygame.org/
   desc: Pygame is a set of Python modules designed for writing games. It is written
@@ -257,7 +236,7 @@
     .mp3. Sound output. midi input and output. Load sounds into numeric and numpy
     arrays.
   category: ''
-  keywords: ''
+
 - name: pymedia
   url: http://pymedia.org
   desc: (Not updated since 2006) PyMedia is a Python module for the multimedia purposes.
@@ -265,7 +244,7 @@
     mp3, ogg, avi, divx, dvd, cdda etc ). It includes parsing, demutiplexing, multiplexing,
     coding and decoding. It can be compiled for Windows, Linux and cygwin.
   category: ''
-  keywords: ''
+
 - name: pyo
   url: https://github.com/belangeo/pyo
   desc: pyo is a Python module containing classes for a wide variety of audio signal
@@ -279,21 +258,21 @@
     process parameters. pyo allows creation of sophisticated signal processing chains
     with all the benefits of a mature, and wildly used, general programming language.
   category: ''
-  keywords: ''
+
 - name: zyne
   url: https://github.com/belangeo/zyne
   desc: Zyne is a Python modular synthesizer using pyo as its audio engine. Zyne comes
     with more than 10 builtin modules implementing different kind of synthesis engines
     and provides a simple API to create your own custom modules.
   category: ''
-  keywords: ''
+
 - name: soundgrain
   url: https://github.com/belangeo/soundgrain
   desc: Soundgrain is a graphical interface where users can draw and edit trajectories
     to control granular sound synthesis modules. Soundgrain is written with Python
     and WxPython and uses pyo as its audio engine.
   category: ''
-  keywords: ''
+
 - name: pysonic
   url: http://pysonic.sourceforge.net/
   desc: (Not updated since 2005) pySonic is a Python wrapper around the high performance,
@@ -301,7 +280,7 @@
     You get all the benefits of the FMOD library, but in a Pythonic, object oriented
     package.
   category: ''
-  keywords: ''
+
 - name: snack
   url: http://www.speech.kth.se/snack/
   desc: '(last update: December 2005) The Snack Sound Toolkit is designed to be used
@@ -318,7 +297,7 @@
     is cross-platform from start. It is also easy to integrate Snack based applications
     with existing sound analysis software.'
   category: ''
-  keywords: ''
+
 - name: audiolazy
   url: http://github.com/danilobellini/audiolazy/
   desc: Real-Time Expressive Digital Signal Processing (DSP) Package for Python, using
@@ -326,21 +305,21 @@
     Scipy, Sympy, music21 and several other packages, none required for DSP computation
     based on Python iterables.
   category: ''
-  keywords: ''
+
 - name: sounddevice
   url: http://python-sounddevice.rtfd.org/
   desc: This module provides bindings for the [portaudio](http://www.portaudio.com/)
     library (using [cffi](https://cffi.rtfd.org/|CFFI)) and a few convenience functions
     to play and record [numpy](http://www.numpy.org/) arrays containing audio signals.
   category: ''
-  keywords: ''
+
 - name: pythonsound
   url: http://pythonsound.sourceforge.net/
   desc: The Python Sound Project aims to develop a productive community around Python,
     Csound and other synthesis engines as tools for algorithmic and computer assisted
     composition of electroacoustic music.
   category: ''
-  keywords: ''
+
 - name: csound
   url: http://www.csound.com/
   desc: Csound is a sound and music synthesis system, providing facilities for composition
@@ -354,14 +333,14 @@
     GUI front end to Csound with Python scripting and a Python module providing tools
     for the algorithmic generation or manipulation of Csound scores. (see also [here](http://wiki.laptop.org/go/Csound))
   category: ''
-  keywords: ''
+
 - name: eyed3
   url: http://eyed3.nicfit.net/
   desc: eyeD3 is a Python module and program for processing ID3 tags. Information
     about mp3 files (i.e bit rate, sample frequency, play time, etc.) is also provided.
     The formats supported are ID3 v1.0/v1.1 and v2.3/v2.4.
   category: ''
-  keywords: ''
+
 - name: mutagen
   url: https://github.com/quodlibet/mutagen
   desc: Mutagen is a Python module to handle audio metadata. It supports ASF, FLAC,
@@ -372,7 +351,7 @@
     of audio format. It can also manipulate Ogg streams on an individual packet/page
     level.
   category: ''
-  keywords: ''
+
 - name: mpgedit
   url: http://www.mpgedit.org/mpgedit/
   desc: mpgedit is an MPEG 1 layer 1/2/3 (mp3), MPEG 2, and MPEG 2.5 audio file editor
@@ -384,34 +363,34 @@
     to utilize the core mpgedit API, providing access to mp3 file playback, editing
     and indexing functionality.
   category: ''
-  keywords: ''
+
 - name: m3ute2
   url: http://sourceforge.net/projects/m3ute2/
   desc: m3ute2 is program for copying, moving, and otherwise organizing M3U playlists
     and directories. m3ute2 can also generate detailed reports about lists of files.
   category: ''
-  keywords: ''
+
 - name: mmpython
   url: http://sourceforge.net/projects/mmpython/
   desc: MMPython is a Media Meta Data retrieval framework. It retrieves metadata from
     mp3, ogg, avi, jpg, tiff and other file formats. Among others it thereby parses
     ID3v2, ID3v1, EXIF, IPTC and Vorbis data into an object oriented struture.
   category: ''
-  keywords: ''
+
 - name: pyid3
   url: http://github.com/myers/pyid3
   desc: pyid3 is a pure Python library for reading and writing id3 tags (version 1.0,
     1.1, 2.3, 2.4, readonly support for 2.2). What makes this better than all the
     others? Testing! This library has been tested against some 200+ MB of just tags.
   category: ''
-  keywords: ''
+
 - name: beets
   url: http://beets.radbox.org/
   desc: music tag correction and cataloging tool. Consists of both a command-line
     interface for music manipulation and a library for building related tools. Can
     automatically correct tags using the MusicBrainz database.
   category: ''
-  keywords: ''
+
 - name: pymidi
   url: https://sourceforge.net/projects/pymidi/
   desc: Provides object oriented programmatic manipulation of MIDI streams. Using
@@ -425,7 +404,7 @@
     example when trying to delete a track), it has not been updated since 2006. This
     package is by Giles Hall. A sourceforge download.
   category: ''
-  keywords: ''
+
 - name: pmidi
   url: http://sourceforge.net/projects/uncassist
   desc: The PMIDI library allows the generation of short MIDI sequences in Python
@@ -434,12 +413,12 @@
     timing is handled by the OS rather than by client code. The library is especially
     useful for generating earcons.
   category: ''
-  keywords: ''
+
 - name: protomidi
   url: https://github.com/ptone/protomidi
   desc: portmidizero is a simple ctypes wrapper for PortMidi in pure Python.
   category: ''
-  keywords: ''
+
 - name: pychorelib
   url: http://chordrecognizer.sourceforge.net/
   desc: 'Python Chord Recognition Library. This is a library that implements the transformation
@@ -449,13 +428,13 @@
     keys and all inversions/permutations. Comes with a real-time midi-input demo program
     (needs PyPortMidi).'
   category: ''
-  keywords: ''
+
 - name: pymidi
   url: http://www.hyperreal.org/~est/python/MIDI/
   desc: The MIDI module provides MIDI input parsers for Python. Package not updated
     since 2000.
   category: ''
-  keywords: ''
+
 - name: pyportmidi
   url: http://web.media.mit.edu/~harrison/pyportmidi.html
   desc: PyPortMidi is a Python wrapper for PortMidi. PortMidi is a cross-platform
@@ -465,18 +444,18 @@
     messages between software packages on the same computer. PyPortMidi is now maintained
     at http://bitbucket.org/aalex/pyportmidi/
   category: ''
-  keywords: ''
+
 - name: pythonmidi
   url: http://www.mxm.dk/products/public/pythonmidi
   desc: The Python Midi package is a collection of classes handling Midi in and output
     in the Python programming language.
   category: ''
-  keywords: ''
+
 - name: pyseq
   url: http://www.sci.ccny.cuny.edu/~brinkman/software/pyseq/
   desc: Python bindings for ALSA using ctypes
   category: ''
-  keywords: ''
+
 - name: milk
   url: http://www.quitte.de/milk.html
   desc: 'Superceding the older (http://www.quitte.de/nam.html|Nam), milk provides
@@ -486,7 +465,7 @@
     is not limited to MIDI events alone; you can define your own extensions should
     the need arise. Website says it is unpolished and unfinished.'
   category: ''
-  keywords: ''
+
 - name: pyrtmidi
   url: http://trac2.assembla.com/pkaudio/wiki/pyrtmidi
   desc: 'rtmidi provides realtime MIDI input/output across Linux (ALSA), Macintosh
@@ -495,7 +474,7 @@
     Patrick Kidd. In fact it is a wrapper for Gary Scavone''s rtmidi from (http://www.music.mcgill.ca/~gary/rtmidi/|here),
     rather than the address on this website:'
   category: ''
-  keywords: ''
+
 - name: win32midi
   url: http://groups.google.com/group/pymidiwin/files
   desc: Some Python samples to demonstrate how to output MIDI stream on MS windows
@@ -505,36 +484,36 @@
     soundchip. A sample script is provided for testing it out. As it is still a work
     in progress, bugs are expected.
   category: ''
-  keywords: ''
+
 - name: midiutil
   url: http://code.google.com/p/midiutil/
   desc: A pure Python library for generating Midi files
   category: ''
-  keywords: ''
+
 - name: pyknon
   url: https://github.com/kroger/pyknon
   desc: Pyknon is a simple music library for Python hackers. With Pyknon you can generate
     Midi files quickly and reason about musical proprieties.
   category: ''
-  keywords: ''
+
 - name: aiosc
   url: https://github.com/artfwo/aiosc
   desc: Minimalistic OSC communication module using asyncio.
   category: ''
-  keywords: ''
+
 - name: pyalsaaudio
   url: http://pyalsaaudio.sourceforge.net/
   desc: This package contains wrappers for accessing the ALSA API (The Advanced Linux
     Sound Architecture (ALSA) provides audio and MIDI functionality to the Linux operating
     system) from Python. It is fairly complete for PCM devices and Mixer access.
   category: ''
-  keywords: ''
+
 - name: pkaudio
   url: http://www.assembla.com/wiki/show/pkaudio
   desc: pkaudio is a collection of Python-based modules for midi input, osc communication
     with supercollider, and pyqt functionality.
   category: ''
-  keywords: ''
+
 - name: pyjack
   url: http://www.a2hd.com/software/
   desc: A Python C extension module which provides an interface to the Jack Audio
@@ -542,7 +521,7 @@
     monitor graph change events, and to perform realtime audio capture and playback
     using Numeric Python arrays. This is released under the GPL.
   category: ''
-  keywords: ''
+
 - name: mxdublin
   url: http://www.le-son666.com/software/mxdublin/
   desc: mxdublin is an object oriented framework to generate events in pd and (http://www.cycling74.com/products/maxmsp.html|max).
@@ -553,7 +532,7 @@
     to build and run sequencing objects. Has a prerequisites, the users needs to know
     a minimal of Python and pd/max.
   category: ''
-  keywords: ''
+
 - name: openexposition
   url: http://dancinghacker.com/code/openexposition/index.html
   desc: OpenExposition is a library aimed at automatic generation of user interfaces.
@@ -565,7 +544,7 @@
     Python), aurally (using the speech synthesis and recognition capabilities on Mac
     OS X), and by building MAX/MSP externals that can then be used in MAX/MSP.
   category: ''
-  keywords: ''
+
 - name: purity
   url: http://wiki.dataflow.ws/Purity
   desc: A Python library for Pure Data dynamic patching. The idea is to be able to
@@ -575,7 +554,7 @@
     user interfaces and asynchronous network operations. Purity uses Twisted, an event-driven
     Python framework.
   category: ''
-  keywords: ''
+
 - name: reaper
   url: http://www.reaper.fm
   desc: REAPER is a professional digital audio workstation (DAW) for Windows, OS X
@@ -585,7 +564,7 @@
     make it a powerful production suite. Since version 3.12 REAPER is scriptable with
     Python, allowing access to internal actions and parts of the API.
   category: ''
-  keywords: ''
+
 - name: blue
   url: http://csounds.com/stevenyi/blue/index.html
   desc: blue is a Java program for use with Csound. It's interface is much like a
@@ -597,7 +576,7 @@
     developed for blue. these soundObjects may be text based, but they can be completely
     GUI based as well.
   category: ''
-  keywords: ''
+
 - name: jokosher
   url: http://www.jokosher.org/
   desc: Jokosher is a simple yet powerful multi-track studio. With it you can create
@@ -605,7 +584,7 @@
     Jokosher is written in Python and uses the GNOME platform and the GTK widget set.
     The audio engine is powered by GStreamer, and we use Cairo for some of the graphics.
   category: ''
-  keywords: ''
+
 - name: musikernel
   url: https://github.com/j3ffhubb/musikernel
   desc: replacement project for `PyDaw`. MusiKernel is an all-in-one DAW and suite
@@ -613,7 +592,7 @@
     the need for any 3rd party software. Simply install the package for your operating
     system, select your audio and MIDI hardware, and start making music.
   category: ''
-  keywords: ''
+
 - name: dawdreamer
   url: https://github.com/DBraun/DawDreamer
   desc: DawDreamer is an audio-processing Python framework supporting core DAW features.
@@ -623,4 +602,4 @@
     DawDreamer's foundation is JUCE, with a user-friendly Python interface thanks
     to pybind11. DawDreamer evolved from an earlier VSTi audio "renderer", RenderMan.
   category: ''
-  keywords: ''
+
