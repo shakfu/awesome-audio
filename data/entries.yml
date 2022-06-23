@@ -310,11 +310,11 @@
   url: https://python-soundfile.readthedocs.io
   repo: https://github.com/bastibe/python-soundfile
 
-- name:
-  category:
-  desc:
-  url:
-  repo:
+- name: isobar
+  category: midi sequencing
+  desc: isobar is a Python library for creating and manipulating musical patterns.
+  url: https://ideoforms.github.io/isobar
+  repo: https://github.com/ideoforms/isobar
 
 - name:
   category:
