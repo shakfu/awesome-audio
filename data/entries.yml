@@ -316,11 +316,11 @@
   url: https://ideoforms.github.io/isobar
   repo: https://github.com/ideoforms/isobar
 
-- name:
-  category:
-  desc:
-  url:
-  repo:
+- name: popsicle
+  category: audio framework
+  desc: Popsicle aims to bridge the JUCE c++ framework to python.
+  url: https://pypi.org/project/popsicle
+  repo: https://github.com/kunitoki/popsicle
 
 - name:
   category:
