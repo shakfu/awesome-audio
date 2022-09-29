@@ -23,11 +23,7 @@ import io
 from enum import IntEnum
 
 
-__all__ = [
-    'WavFileWarning',
-    'read',
-    'write'
-]
+__all__ = ["WavFileWarning", "read", "write"]
 
 
 class WavFileWarning(UserWarning):
@@ -40,6 +36,7 @@ class WAVE_FORMAT(IntEnum):
     Complete list is in mmreg.h in Windows 10 SDK.  ALAC and OPUS are the
     newest additions, in v10.0.14393 2016-07
     """
+
     UNKNOWN = 0x0000
     PCM = 0x0001
     ADPCM = 0x0002
@@ -312,14 +309,17 @@ class WAVE_FORMAT(IntEnum):
 
 KNOWN_WAVE_FORMATS = {WAVE_FORMAT.PCM, WAVE_FORMAT.IEEE_FLOAT}
 
+
 def _raise_bad_format(format_tag):
     try:
         format_name = WAVE_FORMAT(format_tag).name
     except ValueError:
-        format_name = f'{format_tag:#06x}'
-    raise ValueError(f"Unknown wave file format: {format_name}. Supported "
-                     "formats: " +
-                     ', '.join(x.name for x in KNOWN_WAVE_FORMATS))
+        format_name = f"{format_tag:#06x}"
+    raise ValueError(
+        f"Unknown wave file format: {format_name}. Supported "
+        "formats: " + ", ".join(x.name for x in KNOWN_WAVE_FORMATS)
+    )
+
 
 def _read_fmt_chunk(fid, is_big_endian):
     """
@@ -344,36 +344,36 @@ def _read_fmt_chunk(fid, is_big_endian):
     Assumes file pointer is immediately after the 'fmt ' id
     """
     if is_big_endian:
-        fmt = '>'
+        fmt = ">"
     else:
-        fmt = '<'
+        fmt = "<"
 
-    size = struct.unpack(fmt+'I', fid.read(4))[0]
+    size = struct.unpack(fmt + "I", fid.read(4))[0]
 
     if size < 16:
         raise ValueError("Binary structure of wave file is not compliant")
 
-    res = struct.unpack(fmt+'HHIIHH', fid.read(16))
+    res = struct.unpack(fmt + "HHIIHH", fid.read(16))
     bytes_read = 16
 
     format_tag, channels, fs, bytes_per_second, block_align, bit_depth = res
 
-    if format_tag == WAVE_FORMAT.EXTENSIBLE and size >= (16+2):
-        ext_chunk_size = struct.unpack(fmt+'H', fid.read(2))[0]
+    if format_tag == WAVE_FORMAT.EXTENSIBLE and size >= (16 + 2):
+        ext_chunk_size = struct.unpack(fmt + "H", fid.read(2))[0]
         bytes_read += 2
         if ext_chunk_size >= 22:
             extensible_chunk_data = fid.read(22)
             bytes_read += 22
-            raw_guid = extensible_chunk_data[2+4:2+4+16]
+            raw_guid = extensible_chunk_data[2 + 4 : 2 + 4 + 16]
             # GUID template {XXXXXXXX-0000-0010-8000-00AA00389B71} (RFC-2361)
             # MS GUID byte order: first three groups are native byte order,
             # rest is Big Endian
             if is_big_endian:
-                tail = b'\x00\x00\x00\x10\x80\x00\x00\xAA\x00\x38\x9B\x71'
+                tail = b"\x00\x00\x00\x10\x80\x00\x00\xAA\x00\x38\x9B\x71"
             else:
-                tail = b'\x00\x00\x10\x00\x80\x00\x00\xAA\x00\x38\x9B\x71'
+                tail = b"\x00\x00\x10\x00\x80\x00\x00\xAA\x00\x38\x9B\x71"
             if raw_guid.endswith(tail):
-                format_tag = struct.unpack(fmt+'I', raw_guid[:4])[0]
+                format_tag = struct.unpack(fmt + "I", raw_guid[:4])[0]
         else:
             raise ValueError("Binary structure of wave file is not compliant")
 
@@ -387,11 +387,12 @@ def _read_fmt_chunk(fid, is_big_endian):
     # fmt should always be 16, 18 or 40, but handle it just in case
     _handle_pad_byte(fid, size)
 
-    return (size, format_tag, channels, fs, bytes_per_second, block_align,
-            bit_depth)
+    return (size, format_tag, channels, fs, bytes_per_second, block_align, bit_depth)
 
-def _read_data_chunk(fid, format_tag, channels, bit_depth, is_big_endian,
-                     block_align, mmap=False):
+
+def _read_data_chunk(
+    fid, format_tag, channels, bit_depth, is_big_endian, block_align, mmap=False
+):
     """
     Notes
     -----
@@ -410,12 +411,12 @@ def _read_data_chunk(fid, format_tag, channels, bit_depth, is_big_endian,
         nChannels = 2, nBlockAlign = 8, wBitsPerSample = 20
     """
     if is_big_endian:
-        fmt = '>'
+        fmt = ">"
     else:
-        fmt = '<'
+        fmt = "<"
 
     # Size of the data subchunk in bytes
-    size = struct.unpack(fmt+'I', fid.read(4))[0]
+    size = struct.unpack(fmt + "I", fid.read(4))[0]
 
     # Number of bytes per sample (sample container size)
     bytes_per_sample = block_align // channels
@@ -423,39 +424,44 @@ def _read_data_chunk(fid, format_tag, channels, bit_depth, is_big_endian,
 
     if format_tag == WAVE_FORMAT.PCM:
         if 1 <= bit_depth <= 8:
-            dtype = 'u1'  # WAV of 8-bit integer or less are unsigned
+            dtype = "u1"  # WAV of 8-bit integer or less are unsigned
         elif bytes_per_sample in {3, 5, 6, 7}:
             # No compatible dtype.  Load as raw bytes for reshaping later.
-            dtype = 'V1'
+            dtype = "V1"
         elif bit_depth <= 64:
             # Remaining bit depths can map directly to signed numpy dtypes
-            dtype = f'{fmt}i{bytes_per_sample}'
+            dtype = f"{fmt}i{bytes_per_sample}"
         else:
-            raise ValueError("Unsupported bit depth: the WAV file "
-                             f"has {bit_depth}-bit integer data.")
+            raise ValueError(
+                "Unsupported bit depth: the WAV file "
+                f"has {bit_depth}-bit integer data."
+            )
     elif format_tag == WAVE_FORMAT.IEEE_FLOAT:
         if bit_depth in {32, 64}:
-            dtype = f'{fmt}f{bytes_per_sample}'
+            dtype = f"{fmt}f{bytes_per_sample}"
         else:
-            raise ValueError("Unsupported bit depth: the WAV file "
-                             f"has {bit_depth}-bit floating-point data.")
+            raise ValueError(
+                "Unsupported bit depth: the WAV file "
+                f"has {bit_depth}-bit floating-point data."
+            )
     else:
         _raise_bad_format(format_tag)
 
     start = fid.tell()
     if not mmap:
         try:
-            count = size if dtype == 'V1' else n_samples
+            count = size if dtype == "V1" else n_samples
             data = np.fromfile(fid, dtype=dtype, count=count)
         except io.UnsupportedOperation:  # not a C-like file
             fid.seek(start, 0)  # just in case it seeked, though it shouldn't
             data = np.frombuffer(fid.read(size), dtype=dtype)
 
-        if dtype == 'V1':
+        if dtype == "V1":
             # Rearrange raw bytes into smallest compatible numpy dtype
-            dt = f'{fmt}i4' if bytes_per_sample == 3 else f'{fmt}i8'
-            a = np.zeros((len(data) // bytes_per_sample, np.dtype(dt).itemsize),
-                            dtype='V1')
+            dt = f"{fmt}i4" if bytes_per_sample == 3 else f"{fmt}i8"
+            a = np.zeros(
+                (len(data) // bytes_per_sample, np.dtype(dt).itemsize), dtype="V1"
+            )
             if is_big_endian:
                 a[:, :bytes_per_sample] = data.reshape((-1, bytes_per_sample))
             else:
@@ -464,12 +470,15 @@ def _read_data_chunk(fid, format_tag, channels, bit_depth, is_big_endian,
     else:
         if bytes_per_sample in {1, 2, 4, 8}:
             start = fid.tell()
-            data = np.memmap(fid, dtype=dtype, mode='c', offset=start,
-                                shape=(n_samples,))
+            data = np.memmap(
+                fid, dtype=dtype, mode="c", offset=start, shape=(n_samples,)
+            )
             fid.seek(start + size)
         else:
-            raise ValueError("mmap=True not compatible with "
-                             f"{bytes_per_sample}-byte container size.")
+            raise ValueError(
+                "mmap=True not compatible with "
+                f"{bytes_per_sample}-byte container size."
+            )
 
     _handle_pad_byte(fid, size)
 
@@ -477,11 +486,12 @@ def _read_data_chunk(fid, format_tag, channels, bit_depth, is_big_endian,
         data = data.reshape(-1, channels)
     return data
 
+
 def _skip_unknown_chunk(fid, is_big_endian):
     if is_big_endian:
-        fmt = '>I'
+        fmt = ">I"
     else:
-        fmt = '<I'
+        fmt = "<I"
 
     data = fid.read(4)
     # call unpack() and seek() only if we have really read data from file
@@ -493,33 +503,38 @@ def _skip_unknown_chunk(fid, is_big_endian):
         fid.seek(size, 1)
         _handle_pad_byte(fid, size)
 
+
 def _read_riff_chunk(fid):
     str1 = fid.read(4)  # File signature
-    if str1 == b'RIFF':
+    if str1 == b"RIFF":
         is_big_endian = False
-        fmt = '<I'
-    elif str1 == b'RIFX':
+        fmt = "<I"
+    elif str1 == b"RIFX":
         is_big_endian = True
-        fmt = '>I'
+        fmt = ">I"
     else:
         # There are also .wav files with "FFIR" or "XFIR" signatures?
-        raise ValueError(f"File format {repr(str1)} not understood. Only "
-                         "'RIFF' and 'RIFX' supported.")
+        raise ValueError(
+            f"File format {repr(str1)} not understood. Only "
+            "'RIFF' and 'RIFX' supported."
+        )
 
     # Size of entire file
     file_size = struct.unpack(fmt, fid.read(4))[0] + 8
 
     str2 = fid.read(4)
-    if str2 != b'WAVE':
+    if str2 != b"WAVE":
         raise ValueError(f"Not a WAV file. RIFF form type is {repr(str2)}.")
 
     return file_size, is_big_endian
+
 
 def _handle_pad_byte(fid, size):
     # "If the chunk size is an odd number of bytes, a pad byte with value zero
     # is written after ckData." So we need to seek past this after each chunk.
     if size % 2:
         fid.seek(1, 1)
+
 
 def read(filename, mmap=False):
     """
@@ -603,11 +618,11 @@ def read(filename, mmap=False):
     >>> plt.ylabel("Amplitude")
     >>> plt.show()
     """
-    if hasattr(filename, 'read'):
+    if hasattr(filename, "read"):
         fid = filename
         mmap = False
     else:
-        fid = open(filename, 'rb')
+        fid = open(filename, "rb")
 
     try:
         file_size, is_big_endian = _read_riff_chunk(fid)
@@ -622,9 +637,12 @@ def read(filename, mmap=False):
                     # End of file but data successfully read
                     warnings.warn(
                         "Reached EOF prematurely; finished at {:d} bytes, "
-                        "expected {:d} bytes from header."
-                        .format(fid.tell(), file_size),
-                        WavFileWarning, stacklevel=2)
+                        "expected {:d} bytes from header.".format(
+                            fid.tell(), file_size
+                        ),
+                        WavFileWarning,
+                        stacklevel=2,
+                    )
                     break
                 else:
                     raise ValueError("Unexpected end of file.")
@@ -632,37 +650,46 @@ def read(filename, mmap=False):
                 msg = f"Incomplete chunk ID: {repr(chunk_id)}"
                 # If we have the data, ignore the broken chunk
                 if fmt_chunk_received and data_chunk_received:
-                    warnings.warn(msg + ", ignoring it.", WavFileWarning,
-                                  stacklevel=2)
+                    warnings.warn(msg + ", ignoring it.", WavFileWarning, stacklevel=2)
                 else:
                     raise ValueError(msg)
 
-            if chunk_id == b'fmt ':
+            if chunk_id == b"fmt ":
                 fmt_chunk_received = True
                 fmt_chunk = _read_fmt_chunk(fid, is_big_endian)
                 format_tag, channels, fs = fmt_chunk[1:4]
                 bit_depth = fmt_chunk[6]
                 block_align = fmt_chunk[5]
-            elif chunk_id == b'fact':
+            elif chunk_id == b"fact":
                 _skip_unknown_chunk(fid, is_big_endian)
-            elif chunk_id == b'data':
+            elif chunk_id == b"data":
                 data_chunk_received = True
                 if not fmt_chunk_received:
                     raise ValueError("No fmt chunk before data")
-                data = _read_data_chunk(fid, format_tag, channels, bit_depth,
-                                        is_big_endian, block_align, mmap)
-            elif chunk_id == b'LIST':
+                data = _read_data_chunk(
+                    fid,
+                    format_tag,
+                    channels,
+                    bit_depth,
+                    is_big_endian,
+                    block_align,
+                    mmap,
+                )
+            elif chunk_id == b"LIST":
                 # Someday this could be handled properly but for now skip it
                 _skip_unknown_chunk(fid, is_big_endian)
-            elif chunk_id in {b'JUNK', b'Fake'}:
+            elif chunk_id in {b"JUNK", b"Fake"}:
                 # Skip alignment chunks without warning
                 _skip_unknown_chunk(fid, is_big_endian)
             else:
-                warnings.warn("Chunk (non-data) not understood, skipping it.",
-                              WavFileWarning, stacklevel=2)
+                warnings.warn(
+                    "Chunk (non-data) not understood, skipping it.",
+                    WavFileWarning,
+                    stacklevel=2,
+                )
                 _skip_unknown_chunk(fid, is_big_endian)
     finally:
-        if not hasattr(filename, 'read'):
+        if not hasattr(filename, "read"):
             fid.close()
         else:
             fid.seek(0)
@@ -714,28 +741,29 @@ def write(filename, rate, data, markers=False, verbose=True):
     >>> data = amplitude * np.sin(2. * np.pi * fs * t)
     >>> write("example.wav", samplerate, data.astype(np.int16))
     """
-    if hasattr(filename, 'write'):
+    if hasattr(filename, "write"):
         fid = filename
     else:
-        fid = open(filename, 'wb')
+        fid = open(filename, "wb")
 
     fs = rate
 
     try:
         dkind = data.dtype.kind
-        if not (dkind == 'i' or dkind == 'f' or (dkind == 'u' and
-                                                 data.dtype.itemsize == 1)):
+        if not (
+            dkind == "i" or dkind == "f" or (dkind == "u" and data.dtype.itemsize == 1)
+        ):
             raise ValueError("Unsupported data type '%s'" % data.dtype)
 
-        header_data = b''
+        header_data = b""
 
-        header_data += b'RIFF'
-        header_data += b'\x00\x00\x00\x00'
-        header_data += b'WAVE'
+        header_data += b"RIFF"
+        header_data += b"\x00\x00\x00\x00"
+        header_data += b"WAVE"
 
         # fmt chunk
-        header_data += b'fmt '
-        if dkind == 'f':
+        header_data += b"fmt "
+        if dkind == "f":
             format_tag = WAVE_FORMAT.IEEE_FLOAT
         else:
             format_tag = WAVE_FORMAT.PCM
@@ -744,218 +772,260 @@ def write(filename, rate, data, markers=False, verbose=True):
         else:
             channels = data.shape[1]
         bit_depth = data.dtype.itemsize * 8
-        bytes_per_second = fs*(bit_depth // 8)*channels
+        bytes_per_second = fs * (bit_depth // 8) * channels
         block_align = channels * (bit_depth // 8)
 
-        fmt_chunk_data = struct.pack('<HHIIHH', format_tag, channels, fs,
-                                     bytes_per_second, block_align, bit_depth)
-        if not (dkind == 'i' or dkind == 'u'):
+        fmt_chunk_data = struct.pack(
+            "<HHIIHH",
+            format_tag,
+            channels,
+            fs,
+            bytes_per_second,
+            block_align,
+            bit_depth,
+        )
+        if not (dkind == "i" or dkind == "u"):
             # add cbSize field for non-PCM files
-            fmt_chunk_data += b'\x00\x00'
+            fmt_chunk_data += b"\x00\x00"
 
-        header_data += struct.pack('<I', len(fmt_chunk_data))
+        header_data += struct.pack("<I", len(fmt_chunk_data))
         header_data += fmt_chunk_data
 
         # fact chunk (non-PCM files)
-        if not (dkind == 'i' or dkind == 'u'):
-            header_data += b'fact'
-            header_data += struct.pack('<II', 4, data.shape[0])
+        if not (dkind == "i" or dkind == "u"):
+            header_data += b"fact"
+            header_data += struct.pack("<II", 4, data.shape[0])
 
         # check data size (needs to be immediately before the data chunk)
-        if ((len(header_data)-4-4) + (4+4+data.nbytes)) > 0xFFFFFFFF:
+        if ((len(header_data) - 4 - 4) + (4 + 4 + data.nbytes)) > 0xFFFFFFFF:
             raise ValueError("Data exceeds wave file size limit")
 
         fid.write(header_data)
 
         # data chunk
-        fid.write(b'data')
-        fid.write(struct.pack('<I', data.nbytes))
-        if data.dtype.byteorder == '>' or (data.dtype.byteorder == '=' and
-                                           sys.byteorder == 'big'):
+        fid.write(b"data")
+        fid.write(struct.pack("<I", data.nbytes))
+        if data.dtype.byteorder == ">" or (
+            data.dtype.byteorder == "=" and sys.byteorder == "big"
+        ):
             data = data.byteswap()
         _array_tofile(fid, data)
-        
+
         # cue/marker chunk
-        if markers:    # != None and != []
+        if markers:  # != None and != []
             if verbose:
                 print("saving cue markers...")
-            if isinstance(markers[0], dict):# then we have [{'position': 100, 'label': 'marker1'}, ...]
-                labels = [m['label'] for m in markers]
-                markers = [m['position'] for m in markers]
+            if isinstance(
+                markers[0], dict
+            ):  # then we have [{'position': 100, 'label': 'marker1'}, ...]
+                labels = [m["label"] for m in markers]
+                markers = [m["position"] for m in markers]
             else:
-                labels = [b'' for m in markers]
-            fid.write(b'cue ')
+                labels = [b"" for m in markers]
+            fid.write(b"cue ")
             size = 4 + len(markers) * 24
-            fid.write(struct.pack('<ii', size, len(markers)))
+            fid.write(struct.pack("<ii", size, len(markers)))
             for i, c in enumerate(markers):
-                s = struct.pack('<iiiiii', i + 1, c, 1635017060, 0, 0, c)# 1635017060 is struct.unpack('<i',b'data')
+                s = struct.pack(
+                    "<iiiiii", i + 1, c, 1635017060, 0, 0, c
+                )  # 1635017060 is struct.unpack('<i',b'data')
                 fid.write(s)
-            lbls = b''
+            lbls = b""
             for i, lbl in enumerate(labels):
-                lbls += b'labl'
-                label = lbl + ('\x00' if len(lbl) % 2 == 1 else '\x00\x00')
-                size = len(lbl) + 1 + 4          # because \x00
-                lbls += struct.pack('<ii', size, i + 1)
-                lbls += bytes(label, encoding='ascii')
-            fid.write(b'LIST')
+                lbls += b"labl"
+                label = lbl + ("\x00" if len(lbl) % 2 == 1 else "\x00\x00")
+                size = len(lbl) + 1 + 4  # because \x00
+                lbls += struct.pack("<ii", size, i + 1)
+                lbls += bytes(label, encoding="ascii")
+            fid.write(b"LIST")
             size = len(lbls) + 4
-            fid.write(struct.pack('<i', size))                         
-            fid.write(b'adtl')
-            fid.write(lbls) 
+            fid.write(struct.pack("<i", size))
+            fid.write(b"adtl")
+            fid.write(lbls)
 
         # Determine file size and place it in correct
         #  position at start of the file.
         size = fid.tell()
         fid.seek(4)
-        fid.write(struct.pack('<I', size-8))
+        fid.write(struct.pack("<I", size - 8))
 
     finally:
-        if not hasattr(filename, 'write'):
+        if not hasattr(filename, "write"):
             fid.close()
         else:
             fid.seek(0)
 
+
 def _array_tofile(fid, data):
     # ravel gives a c-contiguous buffer
-    fid.write(data.ravel().view('b').data)
-    
+    fid.write(data.ravel().view("b").data)
+
+
 def test_normalized(array):
-    '''
+    """
     Determine if an array is entirely -1 < array[i,j] < 1, to see if array is
         normalized
-    '''
+    """
     return (array > -1).all() and (array < 1).all()
 
+
 def norm_to_32float(array):
-    '''
+    """
     Convert a variety of audio types to float32 while normalizing if needed
-    '''
-    if array.dtype == 'int16': 
-        bits=16
-        normfactor = 2 ** (bits-1)
+    """
+    if array.dtype == "int16":
+        bits = 16
+        normfactor = 2 ** (bits - 1)
         data = np.float32(array) * 1.0 / normfactor
-        
-    if array.dtype == 'int32': 
-        bits=32
-        normfactor = 2 ** (bits-1)
+
+    if array.dtype == "int32":
+        bits = 32
+        normfactor = 2 ** (bits - 1)
         data = np.float32(array) * 1.0 / normfactor
-        
-    if array.dtype == 'float32': 
+
+    if array.dtype == "float32":
         if test_normalized(array):
-            data = np.float32(array) # nothing needed
+            data = np.float32(array)  # nothing needed
         else:
-            bits=32
-            normfactor = 2 ** (bits-1)
+            bits = 32
+            normfactor = 2 ** (bits - 1)
             data = np.float32(array) * 1.0 / normfactor
 
-    if array.dtype == 'float64': 
-        bits=64
-        normfactor = 2 ** (bits-1)
+    if array.dtype == "float64":
+        bits = 64
+        normfactor = 2 ** (bits - 1)
         data = np.float32(array) * 1.0 / normfactor
-        
-    elif array.dtype == 'uint8':
+
+    elif array.dtype == "uint8":
         if isinstance(data[0], (int, np.uint8)):
-            bits=8
+            bits = 8
             # handle uint8 data by shifting to center at 0
-            normfactor = 2 ** (bits-1)
-            data = (np.float32(array) * 1.0 / normfactor) -\
-                            ((normfactor)/(normfactor-1))
+            normfactor = 2 ** (bits - 1)
+            data = (np.float32(array) * 1.0 / normfactor) - (
+                (normfactor) / (normfactor - 1)
+            )
     return data
-        
+
+
 def onset_splice_superflux(audiofile):
-    '''
-    Superflux onset detection method of Boeck and Widmer [2013], modified to 
+    """
+    Superflux onset detection method of Boeck and Widmer [2013], modified to
         use backtracking to get accurate splice location.
     From:
     https://librosa.github.io/librosa/auto_examples/plot_superflux.html#sphx-glr-auto-examples-plot-superflux-py
-    '''
+    """
     # recommended constants directly from paper
-    y, sr = librosa.load(audiofile,sr=44100)
+    y, sr = librosa.load(audiofile, sr=44100)
     n_fft = 1024
-    hop_length = int(librosa.time_to_samples(1./200, sr=sr))
-    lag = 2 # number of frames
-    n_mels = 138 # number of bins
-    fmin = 27.5 # lowest frequency
-    fmax = 16000. #highest frequency
+    hop_length = int(librosa.time_to_samples(1.0 / 200, sr=sr))
+    lag = 2  # number of frames
+    n_mels = 138  # number of bins
+    fmin = 27.5  # lowest frequency
+    fmax = 16000.0  # highest frequency
     max_size = 3
     # Mel spectrogram
-    S = librosa.feature.melspectrogram(y, sr=sr, n_fft=n_fft,
-                                   hop_length=hop_length,
-                                   fmin=fmin,
-                                   fmax=fmax,
-                                   n_mels=n_mels)
+    S = librosa.feature.melspectrogram(
+        y,
+        sr=sr,
+        n_fft=n_fft,
+        hop_length=hop_length,
+        fmin=fmin,
+        fmax=fmax,
+        n_mels=n_mels,
+    )
     # Onset Strength Function
-    odf_sf = librosa.onset.onset_strength(S=librosa.power_to_db(S, ref=np.max),
-                                      sr=sr,
-                                      hop_length=hop_length,
-                                      lag=lag, max_size=max_size)
+    odf_sf = librosa.onset.onset_strength(
+        S=librosa.power_to_db(S, ref=np.max),
+        sr=sr,
+        hop_length=hop_length,
+        lag=lag,
+        max_size=max_size,
+    )
     # Onset locations in time
-    onset_sf = librosa.onset.onset_detect(onset_envelope=odf_sf,
-                                      sr=sr,
-                                      hop_length=hop_length,
-                                      units='time',
-                                      backtrack=True)
+    onset_sf = librosa.onset.onset_detect(
+        onset_envelope=odf_sf,
+        sr=sr,
+        hop_length=hop_length,
+        units="time",
+        backtrack=True,
+    )
     return onset_sf
 
+
 def retain_n_splice_markers(onset_sf, splicecount):
-    '''
+    """
     modified from @w-winter on github
-    
+
     Take larger set of generated splice points and select [splicecount]
         number of them.
     Useful for when the automatically generated number of splices exceeds
         limits (300).
-    '''
+    """
     k, m = divmod(len(onset_sf), splicecount)
     if splicecount < len(onset_sf):
-        splice_markers = list(onset_sf[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(splicecount))
+        splice_markers = list(
+            onset_sf[i * k + min(i, m) : (i + 1) * k + min(i + 1, m)]
+            for i in range(splicecount)
+        )
         splice_markers[0] = [0.0]
         return np.array([x[0] for x in splice_markers])
     else:
-        print('More desired splices than available splices, defaulting to librosa output')
+        print(
+            "More desired splices than available splices, defaulting to librosa output"
+        )
         return onset_sf
 
-def change_samplerate_interp(old_audio,old_rate,new_rate):
-    '''
+
+def change_samplerate_interp(old_audio, old_rate, new_rate):
+    """
     Change sample rate to new sample rate by simple interpolation.
     If old_rate > new_rate, there may be aliasing / data loss.
     Input should be in column format, as the interpolation will be completed
         on each channel this way.
     Modified from:
     https://stackoverflow.com/questions/33682490/how-to-read-a-wav-file-using-scipy-at-a-different-sampling-rate
-    '''    
+    """
     if old_rate != new_rate:
         # duration of audio
         duration = old_audio.shape[0] / old_rate
-        
+
         # length of old and new audio
-        time_old  = np.linspace(0, duration, old_audio.shape[0])
-        time_new  = np.linspace(0, duration, int(old_audio.shape[0] * new_rate / old_rate))
-        
+        time_old = np.linspace(0, duration, old_audio.shape[0])
+        time_new = np.linspace(
+            0, duration, int(old_audio.shape[0] * new_rate / old_rate)
+        )
+
         # fit old_audio into new_audio length by interpolation
         interpolator = interpolate.interp1d(time_old, old_audio.T)
         new_audio = interpolator(time_new).T
         return new_audio
     else:
-        print('Conversion not needed, old and new rates match')
-        return old_audio # conversion not needed
+        print("Conversion not needed, old and new rates match")
+        return old_audio  # conversion not needed
+
 
 def main(argv):
-    inputwavefile = ''
-    outputfile = ''
+    inputwavefile = ""
+    outputfile = ""
     splicecount = []
     try:
-        opts, args = getopt.getopt(argv,"hw:o:s:",["wavfile=","outputfile=","splicecount="])
+        opts, args = getopt.getopt(
+            argv, "hw:o:s:", ["wavfile=", "outputfile=", "splicecount="]
+        )
     except getopt.GetoptError:
-        print('Error in usage, correct format:\n'+\
-            'morphagene_onset3.py -w <inputwavfile> -o <outputfile> -s <splicecount>')
+        print(
+            "Error in usage, correct format:\n"
+            + "morphagene_onset3.py -w <inputwavfile> -o <outputfile> -s <splicecount>"
+        )
         sys.exit(2)
     for opt, arg in opts:
-        if opt == '-h':
-            print('Morphagene reel creation using Superflux onset detection:\n'+\
-                  'morphagene_onset3.py -w <inputwavfile> -o <outputfile> -s <splicecount>\n'+\
-                  '"-s" is useful for avoiding the 300-splice limit of the Morphagene.\n'+\
-                  'If you would rather bypass this, use a number >300 here.')
+        if opt == "-h":
+            print(
+                "Morphagene reel creation using Superflux onset detection:\n"
+                + "morphagene_onset3.py -w <inputwavfile> -o <outputfile> -s <splicecount>\n"
+                + '"-s" is useful for avoiding the 300-splice limit of the Morphagene.\n'
+                + "If you would rather bypass this, use a number >300 here."
+            )
             sys.exit()
         elif opt in ("-w", "--wavfile"):
             inputwavefile = arg
@@ -963,36 +1033,43 @@ def main(argv):
             outputfile = arg
         elif opt in ("-s", "--splicecount"):
             splicecount = int(arg)
-    print('Input wave file: %s'%inputwavefile)
-    print('Output Morphagene reel: %s'%outputfile)
-    print('Number of selected splices: %i'%splicecount)
+    print("Input wave file: %s" % inputwavefile)
+    print("Output Morphagene reel: %s" % outputfile)
+    print("Number of selected splices: %i" % splicecount)
 
     ###########################################################################
-    '''
+    """
     Write single file, with splice locations using the Superflux onset 
         detection algorithm with backtracking for optimal splice location.
-    '''
+    """
     ###########################################################################
-    morph_srate = 48000 # required samplerate for Morphagene
-     
+    morph_srate = 48000  # required samplerate for Morphagene
+
     # generate labels and time in seconds of splices using librosa
-    librosa_sec = retain_n_splice_markers(np.unique(onset_splice_superflux(inputwavefile)), splicecount)
-     
+    librosa_sec = retain_n_splice_markers(
+        np.unique(onset_splice_superflux(inputwavefile)), splicecount
+    )
+
     # read pertinent info from audio file, convert to correct 32-bit float,
     #    exit if input wave file is broken
     try:
         sample_rate, array = read(inputwavefile)
         array = norm_to_32float(array)
-    except: 
-        print('Input file %s.wav is poorly formatted, exiting'%inputwavefile)
+    except:
+        print("Input file %s.wav is poorly formatted, exiting" % inputwavefile)
         sys.exit()
-    
+
     # check if input wav has a different rate than desired Morphagene rate,
     #   and correct by interpolation
     if sample_rate != morph_srate:
-        print("Correcting input sample rate %iHz to Morphagene rate %iHz"%(sample_rate,morph_srate))
+        print(
+            "Correcting input sample rate %iHz to Morphagene rate %iHz"
+            % (sample_rate, morph_srate)
+        )
         # perform interpolation on each channel, then transpose back
-        array = change_samplerate_interp(array,float(sample_rate),float(morph_srate)).T
+        array = change_samplerate_interp(
+            array, float(sample_rate), float(morph_srate)
+        ).T
         # convert labels in seconds to labels in frames, adjusting for change
         #   in rate
         sc = float(morph_srate) / float(sample_rate)
@@ -1000,20 +1077,24 @@ def main(argv):
     else:
         array = array.T
         frame_labs = (librosa_sec * sample_rate).astype(np.int)
-    frame_dict = [{'position': l, 'label': 'marker%i'%(i+1)} for i,l in enumerate(frame_labs)]
-    
+    frame_dict = [
+        {"position": l, "label": "marker%i" % (i + 1)} for i, l in enumerate(frame_labs)
+    ]
+
     # warnings about morphagene limitations
-    if len(frame_dict) > 300 or (array.shape[1]/morph_srate)/60. > 2.9:
-        raise ValueError('Number of splices (%i) and/or audio'%len(frame_dict) + \
-            ' length (%2.1f minutes)'%((array.shape[1]/morph_srate)/60.) + \
-            'exceed Morphagene limits [300 splices / 2.9 minutes]')
-            
+    if len(frame_dict) > 300 or (array.shape[1] / morph_srate) / 60.0 > 2.9:
+        raise ValueError(
+            "Number of splices (%i) and/or audio" % len(frame_dict)
+            + " length (%2.1f minutes)" % ((array.shape[1] / morph_srate) / 60.0)
+            + "exceed Morphagene limits [300 splices / 2.9 minutes]"
+        )
+
     # write wav file with additional cue markers from labels
-    write(outputfile,morph_srate,array.T.astype('float32'),markers=frame_dict)
-    print('Saved Morphagene reel with %i splices: %s'%(len(frame_labs),outputfile))
+    write(outputfile, morph_srate, array.T.astype("float32"), markers=frame_dict)
+    print("Saved Morphagene reel with %i splices: %s" % (len(frame_labs), outputfile))
     name = os.path.splitext(inputwavefile)[0]
-    np.savetxt('%s.txt'%name,librosa_sec,fmt='%03.6f',delimiter='\t')
-    
+    np.savetxt("%s.txt" % name, librosa_sec, fmt="%03.6f", delimiter="\t")
+
+
 if __name__ == "__main__":
     main(sys.argv[1:])
-
