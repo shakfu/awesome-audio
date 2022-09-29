@@ -50,3 +50,10 @@ Generally have not included python2 scripts if a python3 script is available.
 - [morphagene_logic.py](https://gist.github.com/ferrihydrite/290f4874711f99456e542c71b893df75) -- A [ferrihydrite](https://gist.github.com/ferrihydrite) script which reads 24 bit WAV files with markers from Logic Pro, extract markers, and resave file as a 32 bit float file with cue markers, directly compatible with the Make Noise Morphagene.
 
 
+## Wave Markers
+
+- [wave_markers](https://github.com/crobird/wave_markers) -- Python3 script to add cue markers to a wave file. "I made this to dump wave files with cues to the Make Noise Morphagene. It works for me, but it's not perfect..."
+
+- [wavcue](https://github.com/debdungeon/wavecue) -- A simple python script which tries to read cue markers from a wav file which can be used in in the context of morphagene.
+
+
