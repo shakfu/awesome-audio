@@ -2,13 +2,15 @@
 
 ## Information
 
-- [Lines Forum: Morphagene Patch & System Ideas](https://llllllll.co/t/morphagene-patch-system-ideas/8197)
+- [Liines Forum: Morphagene Patch & System Ideas](https://llllllll.co/t/morphagene-patch-system-ideas/8197)
 
 - [signal flux / Morphagene Guide](https://signalflux.org/morphagene)
 
 - [reddit / Tips for prepping morphagene reels](https://www.reddit.com/r/modular/comments/s1he2j/tips_for_prepping_morphagene_reels/)
 
 - [reddit / Using audacity and python to make morphagene reels](https://www.reddit.com/r/modular/comments/a5mvzk/using_audacity_and_python_to_make_morphagene_reels/) -- also has a [visual guide](https://imgur.com/a/XocUesN)
+
+- [Morphagene Wavetable Synthesis](https://llllllll.co/t/morphagene-patch-system-ideas/8197/267?page=14)
 
 - [search topic on github](https://github.com/search?q=morphagene)
 
