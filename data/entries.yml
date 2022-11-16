@@ -322,11 +322,11 @@
   url: https://pypi.org/project/popsicle
   repo: https://github.com/kunitoki/popsicle
 
-- name:
-  category:
-  desc:
-  url:
-  repo:
+- name: sardine
+  category: python algorave module
+  desc: Sardine is a hacker-friendly Python library tailored for musical improvisation, algorithmic composition and much more
+  url: https://sardine.raphaelforment.fr
+  repo: https://github.com/Bubobubobubobubo/sardine
 
 - name:
   category:
