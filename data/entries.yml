@@ -328,23 +328,23 @@
   url: https://sardine.raphaelforment.fr
   repo: https://github.com/Bubobubobubobubo/sardine
 
-- name:
-  category:
-  desc:
+- name: pyCrossfade
+  category: beatmatching
+  desc: pyCrossfade is born out of a personal effort to create a customizable and beat-matched crossfade functionality.
   url:
-  repo:
+  repo: https://github.com/oguzhan-yilmaz/pyCrossfade
 
-- name:
-  category:
-  desc:
+- name: textbeat
+  category: midi sequencer
+  desc: plaintext music sequencer and midi shell, with vim playback
   url:
-  repo:
+  repo: https://github.com/flipcoder/textbeat
 
-- name:
-  category:
-  desc:
+- name: PLEBTracker
+  category: tracker
+  desc: Ncurses based audio tracker program inspired by goattracker and milkytracker
   url:
-  repo:
+  repo: https://github.com/danfrz/PLEBTracker
 
 - name:
   category:
