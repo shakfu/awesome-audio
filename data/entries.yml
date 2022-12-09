@@ -346,17 +346,17 @@
   url:
   repo: https://github.com/danfrz/PLEBTracker
 
-- name:
-  category:
-  desc:
+- name: MIDIVisualizer
+  category: midi visuals
+  desc: A small MIDI visualizer tool, using OpenGL
   url:
-  repo:
+  repo: https://github.com/kosua20/MIDIVisualizer
 
-- name:
-  category:
-  desc:
-  url:
-  repo:
+- name: sardine
+  category: algorithmic seqeuncer
+  desc: Sardine is a hacker-friendly Python library tailored for musical improvisation, algorithmic composition and much more. Sardine is transforming your typical Python interpreter into a music instrument that allows you to write melodic and rhythmic patterns of any kind and to map them to any electronic instrument: MIDI, OSC and/or SuperCollider.
+  url: https://sardine.raphaelforment.fr
+  repo:i https://github.com/Bubobubobubobubo/sardine
 
 - name:
   category:
