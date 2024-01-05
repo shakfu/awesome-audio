@@ -376,11 +376,11 @@
   url: https://gwion.github.io/Gwion/
   repo: https://github.com/Gwion/Gwion
 
-- name:
-  category:
-  desc:
+- name: cyfaust
+  category: cython wrapper faust interpreter
+  desc: A cython wrapper of the faust interpreter with rtaudio support. Includes box api and signal support.
   url:
-  repo:
+  repo: https://github.com/shakfu/cyfaust
 
 - name:
   category:
