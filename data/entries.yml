@@ -370,11 +370,11 @@
   url: 
   repo: https://github.com/YouGuessedMyName/pychords
 
-- name:
-  category:
-  desc:
-  url:
-  repo:
+- name: gwion
+  category: musical programming language
+  desc: Gwion is a programming language, aimed at making music.
+  url: https://gwion.github.io/Gwion/
+  repo: https://github.com/Gwion/Gwion
 
 - name:
   category:
