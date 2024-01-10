@@ -354,7 +354,7 @@
 
 - name: sardine
   category: algorithmic seqeuncer
-  desc: Sardine is a hacker-friendly Python library tailored for musical improvisation, algorithmic composition and much more. Sardine is transforming your typical Python interpreter into a music instrument that allows you to write melodic and rhythmic patterns of any kind and to map them to any electronic instrument: MIDI, OSC and/or SuperCollider.
+  desc: Sardine is a hacker-friendly Python library tailored for musical improvisation, algorithmic composition and much more. Sardine is transforming your typical Python interpreter into a music instrument that allows you to write melodic and rhythmic patterns of any kind and to map them to any electronic instrument (MIDI, OSC and/or SuperCollider).
   url: https://sardine.raphaelforment.fr
   repo:i https://github.com/Bubobubobubobubo/sardine
 
@@ -381,6 +381,36 @@
   desc: A cython wrapper of the faust interpreter with rtaudio support. Includes box api and signal support.
   url:
   repo: https://github.com/shakfu/cyfaust
+
+- name: strudel
+  category: livecoding web language
+  desc: Web-based environment for live coding algorithmic patterns, incorporating a faithful port of TidalCycles to JavaScript.
+  url: https://strudel.cc
+  repo: https://github.com/tidalcycles/strudel
+
+- name: chuck
+  category: chuck music programming language
+  desc: ChucK is a programming language for real-time sound synthesis and music creation. ChucK offers a unique time-based, concurrent programming model that is precise and expressive (we call this strongly-timed), dynamic control rates, and the ability to add and modify code on-the-fly. 
+  url: https://chuck.stanford.edu
+  repo: https://github.com/ccrma/chuck
+
+- name: chuck-max
+  category: chuck max external
+  desc: A max/msp external which embeds the chuck engine.
+  url: 
+  repo: https://github.com/shakfu/chuck-max
+
+- name: pd-chuck
+  category: chuck puredata external
+  desc: The chuck engine in a pure-data external
+  url:
+  repo: https://github.com/shakfu/pd-chuck
+
+- name: py2max
+  category: python max generator
+  desc: A python library for offline generation of Max/MSP patcher (.maxpat) files.
+  url:
+  repo: https://github.com/shakfu/py2max
 
 - name:
   category:
