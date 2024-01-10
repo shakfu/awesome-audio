@@ -412,9 +412,58 @@
   url:
   repo: https://github.com/shakfu/py2max
 
-- name:
-  category:
+- name: showmidi
+  category: midi visualizer
+  desc: Multi-platform GUI application to effortlessly visualize MIDI activity
+  url: 
+  repo: https://github.com/gbevin/ShowMIDI
+
+- name: sendmidi
+  category: midi send commandline
+  desc: Multi-platform command-line tool to send out MIDI messages
+  url: 
+  repo: https://github.com/gbevin/SendMIDI
+
+- name: receivemidi
+  category: midi receive commandline
+  desc: Multi-platform command-line tool to monitor and receive MIDI messages
+  url: 
+  repo: https://github.com/gbevin/ReceiveMIDI
+
+- name: cane
+  category: midi sequencer dsl
+  desc: A small MIDI sequencer DSL designed around vectors and euclidean rhythms
+  url: 
+  repo: https://github.com/Jackojc/cane
+
+- name: line
+  category: midi commandline sequencer
+  desc: A tiny command-line midi sequencer for live coding (supports ableton link).
+  url: 
+  repo: https://github.com/pd3v/line
+
+- name: orca
+  category: orca midi sequencing language
+  desc: Orca Live Programming Environment (C Port) with MIDI sequencing in the terminal.
+  url: 
+  repo: https://github.com/hundredrabbits/Orca-c
+
+- name: 
+  category: 
   desc:
-  url:
+  url: 
   repo:
+
+- name: 
+  category: 
+  desc:
+  url: 
+  repo:
+
+- name: 
+  category: 
+  desc:
+  url: 
+  repo:
+
 
