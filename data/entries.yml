@@ -485,3 +485,21 @@
   url: null
   repo: https://github.com/ronnyandersson/zignal
 
+- name: pycoreaudio
+  category: audio driver
+  desc: Apple CoreAudio wrappers for Python 3
+  url: null
+  repo: https://github.com/larsimmisch/pycoreaudio
+
+- name: megra.rs
+  category: livecoding
+  desc: Mégra is a mini-language to make music with variable-order markov chains and some other stochastic shenanigans.
+  url: null
+  repo: https://github.com/the-drunk-coder/megra.rs
+
+- name: glicol
+  category: livecoding
+  desc: A graph-oriented live coding language written in Rust.
+  url: null
+  repo: https://glicol.org
+
