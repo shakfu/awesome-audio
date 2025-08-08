@@ -503,3 +503,15 @@
   url: null
   repo: https://glicol.org
 
+- name: synchroton
+  category: livecoding
+  desc: A graph-oriented live coding language written in python.
+  url: https://synchroton.thatother.dev
+  repo: https://github.com/ThatOtherAndrew/Synchrotron
+
+- name: timeside
+  category: analysis
+  desc: Scalable audio processing framework and server written in Python
+  url: https://timeside.ircam.fr/docs
+  repo: https://github.com/Parisson/TimeSide
+
