@@ -1,8 +1,0 @@
-mkdocs
-sqlalchemy
-jinja2
-pyyaml
-
-
-# optional for collection
-# webloc

@@ -159,10 +159,10 @@
   url: https://gwion.github.io/Gwion/
   repo: https://github.com/Gwion/Gwion
 
-- name: https://github.com/irmen/pyminiaudio
+- name: pyminiaudio
   category: audio-interface
-  desc: python interface to the miniaudio audio playback, recording, decoding and
-    conversion library
+  desc: Python interface to the miniaudio audio playback, recording, decoding and
+    conversion library.
   url: null
   repo: https://github.com/irmen/pyminiaudio
 
@@ -171,12 +171,6 @@
   desc: A Python library for creating and manipulating musical patterns, designed
     for use in algorithmic composition, generative music and sonification. Can be
     used to generate MIDI events, MIDI files, OSC messages, or custom events.
-  url: null
-  repo: https://github.com/ideoforms/isobar
-
-- name: isobar
-  category: midi sequencing
-  desc: isobar is a Python library for creating and manipulating musical patterns.
   url: https://ideoforms.github.io/isobar
   repo: https://github.com/ideoforms/isobar
 
@@ -369,19 +363,11 @@
   repo: https://github.com/bmcfee/resampy
 
 - name: sardine
-  category: python algorave module
+  category: livecoding
   desc: Sardine is a hacker-friendly Python library tailored for musical improvisation,
-    algorithmic composition and much more
-  url: https://sardine.raphaelforment.fr
-  repo: https://github.com/Bubobubobubobubo/sardine
-
-- name: sardine
-  category: algorithmic seqeuncer
-  desc: Sardine is a hacker-friendly Python library tailored for musical improvisation,
-    algorithmic composition and much more. Sardine is transforming your typical Python
-    interpreter into a music instrument that allows you to write melodic and rhythmic
-    patterns of any kind and to map them to any electronic instrument (MIDI, OSC and/or
-    SuperCollider).
+    algorithmic composition and much more. Sardine transforms your Python interpreter
+    into a music instrument for writing melodic and rhythmic patterns mapped to any
+    electronic instrument (MIDI, OSC and/or SuperCollider).
   url: https://sardine.raphaelforment.fr
   repo: https://github.com/Bubobubobubobubo/sardine
 

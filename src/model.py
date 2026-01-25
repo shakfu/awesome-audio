@@ -1,32 +1,64 @@
-from sqlalchemy import create_engine
-from sqlalchemy import Column, ForeignKey, Integer, String, Date
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.orm import Session
+"""SQLAlchemy models for awesome-audio database."""
+
+from pathlib import Path
+from typing import Optional
+
+from sqlalchemy import Column, Date, Integer, String, create_engine
+from sqlalchemy.orm import Session, declarative_base
 
 Base = declarative_base()
-engine = create_engine("sqlite+pysqlite:///sqlite.db", echo=True, future=True)
+
+# Default database path
+DEFAULT_DB_PATH = Path(__file__).parent.parent / "awesome-audio.db"
+
+
+def get_engine(db_path: Optional[Path] = None, echo: bool = False):
+    """Create a SQLAlchemy engine for the given database path."""
+    path = db_path or DEFAULT_DB_PATH
+    return create_engine(f"sqlite:///{path}", echo=echo)
 
 
 class Entry(Base):
-    __tablename__ = 'entry'
+    """An entry in the awesome-audio list."""
 
-    id = Column(Integer, primary_key = True)
-    name = Column(String, nullable=False)
+    __tablename__ = "entry"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False, unique=True)
     category = Column(String, nullable=False)
-    url = Column(String, nullable=False)
+    url = Column(String, nullable=True)
+    repo = Column(String, nullable=True)
     description = Column(String, nullable=False)
-    keywords = Column(String, nullable=False)
-    last_updated = Column(Date)
+    keywords = Column(String, nullable=True)
+    last_updated = Column(Date, nullable=True)
+    last_checked = Column(Date, nullable=True)
+
+    def __repr__(self) -> str:
+        return f"<Entry(name='{self.name}', category='{self.category}')>"
+
+    def to_dict(self) -> dict:
+        """Convert entry to dictionary."""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "category": self.category,
+            "url": self.url,
+            "repo": self.repo,
+            "description": self.description,
+            "keywords": self.keywords,
+            "last_updated": self.last_updated.isoformat() if self.last_updated else None,
+            "last_checked": self.last_checked.isoformat() if self.last_checked else None,
+        }
 
 
-if __name__ == '__main__':
+def init_db(db_path: Optional[Path] = None, echo: bool = False) -> Session:
+    """Initialize the database and return a session."""
+    engine = get_engine(db_path, echo)
     Base.metadata.create_all(engine)
-
-    e1 = Entry(name='pyo', category='dsp', url='http://me.org',
-               description='blach blah', keywords='dsp, audio')
+    return Session(engine)
 
 
-    with Session(engine) as session:
-        session.add(e1)
-        session.commit()
-
+def get_session(db_path: Optional[Path] = None) -> Session:
+    """Get a session for the database."""
+    engine = get_engine(db_path)
+    return Session(engine)
