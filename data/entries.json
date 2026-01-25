@@ -44,6 +44,13 @@
       "repo": "https://github.com/ambv/aiotone"
     },
     {
+      "name": "aldakit",
+      "category": "music-programming",
+      "desc": "A zero-dependency Python parser and MIDI generator for the Alda music programming language",
+      "url": null,
+      "repo": "https://github.com/shakfu/aldakit"
+    },
+    {
       "name": "aubio",
       "category": "analysis",
       "desc": "A library for audio and music analysis.",
@@ -154,6 +161,13 @@
       "desc": "A cython wrapper of the faust interpreter with rtaudio support.",
       "url": null,
       "repo": "https://github.com/shakfu/cyfaust"
+    },
+    {
+      "name": "cyminiaudio",
+      "category": "audio-interface",
+      "desc": "A comprehensive  cython wrapper of miniaudio",
+      "url": null,
+      "repo": "https://github.com/shakfu/cyminiaudio"
     },
     {
       "name": "cython-sounddevice",
@@ -366,6 +380,13 @@
       "repo": "https://github.com/shakfu/py2max"
     },
     {
+      "name": "py2pd",
+      "category": "pure-data",
+      "desc": "Roundtrip parsing and generation of pure-data patches",
+      "url": null,
+      "repo": "https://github.com/shakfu/py2pd"
+    },
+    {
       "name": "py_headless_daw",
       "category": "daw",
       "desc": "A GUI-less DAW for producing electronic music using python",
@@ -441,6 +462,13 @@
       "desc": "Apply audio effects such as reverb and EQ directly to audio files.",
       "url": null,
       "repo": "https://github.com/carlthome/python-audio-effects"
+    },
+    {
+      "name": "pysunvox",
+      "category": "daw",
+      "desc": "A python wrapper for the sunvox developer library using cython.",
+      "url": null,
+      "repo": "https://github.com/shakfu/pysunvox"
     },
     {
       "name": "python-sounddevice",

@@ -4,7 +4,7 @@
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-This list contains **86** projects across **33** categories.
+This list contains **90** projects across **34** categories.
 
 *Last updated: 2026-01-25*
 
@@ -32,6 +32,7 @@ This list contains **86** projects across **33** categories.
 - [Music Programming](#music-programming)
 - [Music Theory](#music-theory)
 - [Plugins](#plugins)
+- [Pure Data](#pure-data)
 - [Random](#random)
 - [Resampling](#resampling)
 - [Sequencer](#sequencer)
@@ -75,6 +76,8 @@ This list contains **86** projects across **33** categories.
 - **[popsicle](https://pypi.org/project/popsicle)** - Popsicle aims to bridge the JUCE c++ framework to python.
 
 ## Audio Interface
+
+- **[cyminiaudio](https://github.com/shakfu/cyminiaudio)** - A comprehensive cython wrapper of miniaudio
 
 - **[cython-sounddevice](https://cython-sounddevice.readthedocs.io/en/latest/)** - Python bindings for the PortAudio library to interface with audio streams.
 
@@ -121,6 +124,8 @@ This list contains **86** projects across **33** categories.
 - **[dawdreamer](https://github.com/DBraun/DawDreamer)** - Digital Audio Workstation with Python; VST instruments/effects, parameter automation, FAUST.
 
 - **[py_headless_daw](https://github.com/hq9000/py_headless_daw)** - A GUI-less DAW for producing electronic music using python
+
+- **[pysunvox](https://github.com/shakfu/pysunvox)** - A python wrapper for the sunvox developer library using cython.
 
 ## Dsp
 
@@ -186,6 +191,8 @@ This list contains **86** projects across **33** categories.
 
 ## Music Programming
 
+- **[aldakit](https://github.com/shakfu/aldakit)** - A zero-dependency Python parser and MIDI generator for the Alda music programming language
+
 - **[cane](https://github.com/Jackojc/cane)** - A small MIDI sequencer DSL designed around vectors and euclidean rhythms
 
 - **[gwion](https://gwion.github.io/Gwion/)** - Gwion is a programming language, aimed at making music.
@@ -207,6 +214,10 @@ This list contains **86** projects across **33** categories.
 - **[pedalboard](https://github.com/spotify/pedalboard)** - A Python library for adding effects to audio.
 
 - **[renderman](https://github.com/fedden/RenderMan)** - Command line C++ and Python VSTi Host library.
+
+## Pure Data
+
+- **[py2pd](https://github.com/shakfu/py2pd)** - Roundtrip parsing and generation of pure-data patches
 
 ## Random
 
