@@ -4,68 +4,44 @@
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-This list contains **78** projects across **29** categories.
+This list contains **86** projects across **33** categories.
 
 *Last updated: 2026-01-25*
 
 ## Contents
 
 - [Ableton](#ableton)
-
 - [Algorithmic Music](#algorithmic-music)
-
 - [Analysis](#analysis)
-
+- [Audio Framework](#audio-framework)
 - [Audio Interface](#audio-interface)
-
 - [Augmentation](#augmentation)
-
 - [Beatmatching](#beatmatching)
-
 - [Chuck](#chuck)
-
 - [Csound](#csound)
-
 - [Daw](#daw)
-
 - [Dsp](#dsp)
-
 - [Editor](#editor)
-
+- [Faust](#faust)
 - [Fx](#fx)
-
 - [Livecoding](#livecoding)
-
 - [Looping](#looping)
-
+- [Max Msp](#max-msp)
 - [Midi](#midi)
-
 - [Monome](#monome)
-
 - [Music Programming](#music-programming)
-
+- [Music Theory](#music-theory)
 - [Plugins](#plugins)
-
 - [Random](#random)
-
 - [Resampling](#resampling)
-
 - [Sequencer](#sequencer)
-
 - [Speech](#speech)
-
 - [Supercollider](#supercollider)
-
 - [Synthesis](#synthesis)
-
 - [Timestretching](#timestretching)
-
 - [Tracker](#tracker)
-
 - [Utility](#utility)
-
 - [Visualization](#visualization)
-
 - [Wavetables](#wavetables)
 
 ---
@@ -88,15 +64,19 @@ This list contains **78** projects across **29** categories.
 
 - **[crepe](https://github.com/marl/crepe)** - A Convolutional REpresentation for Pitch Estimation.
 
-- **[essentia](http://essentia.upf.edu)** - C++ library for audio and music analysis, description and synthesis, including Python bindings.
+- **[essentia](http://essentia.upf.edu)** - C++ library for audio and music analysis, description and synthesis.
 
 - **[librosa](https://librosa.org)** - Python library for audio and music analysis
 
 - **[timeside](https://timeside.ircam.fr/docs)** - Scalable audio processing framework and server written in Python
 
+## Audio Framework
+
+- **[popsicle](https://pypi.org/project/popsicle)** - Popsicle aims to bridge the JUCE c++ framework to python.
+
 ## Audio Interface
 
-- **[cython-sounddevice](https://cython-sounddevice.readthedocs.io/en/latest/)** - Python bindings for the PortAudio library to interface with audio streams. This project was inspired by python-sounddevice, but uses Cython instead of CFFI.
+- **[cython-sounddevice](https://cython-sounddevice.readthedocs.io/en/latest/)** - Python bindings for the PortAudio library to interface with audio streams.
 
 - **[pycoreaudio](https://github.com/larsimmisch/pycoreaudio)** - Apple CoreAudio wrappers for Python 3
 
@@ -106,7 +86,7 @@ This list contains **78** projects across **29** categories.
 
 - **[python-sounddevice](https://python-sounddevice.readthedocs.io)** - Play and Record Sound with Python
 
-- **[python-soundfile](https://python-soundfile.readthedocs.io)** - The soundfile module is an audio library based on libsndfile, CFFI and NumPy.
+- **[python-soundfile](https://python-soundfile.readthedocs.io)** - The soundfile module is an audio library based on libsndfile.
 
 - **[soundcard](https://soundcard.readthedocs.io/en/latest/)** - A Pure-Python Real-Time Audio Library.
 
@@ -116,11 +96,11 @@ This list contains **78** projects across **29** categories.
 
 ## Beatmatching
 
-- **[pycrossfade](https://github.com/oguzhan-yilmaz/pyCrossfade)** - pyCrossfade is born out of a personal effort to create a customizable and beat-matched crossfade functionality.
+- **[pycrossfade](https://github.com/oguzhan-yilmaz/pyCrossfade)** - A customizable and beat-matched crossfade functionality.
 
 ## Chuck
 
-- **[chuck](https://chuck.stanford.edu)** - ChucK is a programming language for real-time sound synthesis and music creation. ChucK offers a unique time-based, concurrent programming model that is precise and expressive (we call this strongly-timed), dynamic control rates, and the ability to add and modify code on-the-fly.
+- **[chuck](https://chuck.stanford.edu)** - ChucK is a programming language for real-time sound synthesis and music creation.
 
 - **[chuck-max](https://github.com/shakfu/chuck-max)** - A max/msp external which embeds the chuck engine.
 
@@ -130,7 +110,7 @@ This list contains **78** projects across **29** categories.
 
 - **[csd](https://github.com/jacobjoaquin/csd)** - Csound CSD Preprocessor
 
-- **[csound-expression](https://hackage.haskell.org/package/csound-expression)** - Csound-expression is a framework for creation of computer music. It's a Haskell library to make Csound much more friendly. It generates Csound files out of Haskell code.
+- **[csound-expression](https://hackage.haskell.org/package/csound-expression)** - Csound-expression is a framework for creation of computer music.
 
 - **[ctcsound](https://csound.com/docs/ctcsound/)** - ctcsound is a Python module which wraps the C functions of the Csound API.
 
@@ -138,21 +118,17 @@ This list contains **78** projects across **29** categories.
 
 - **[bespoke](http://www.bespokesynth.com)** - A modular DAW for Mac, Windows, and Linux with python scripting.
 
-- **[dawdreamer](https://github.com/DBraun/DawDreamer)** - Digital Audio Workstation with Python; VST instruments/effects, parameter automation, FAUST, Warp Markers, and JUCE processors
+- **[dawdreamer](https://github.com/DBraun/DawDreamer)** - Digital Audio Workstation with Python; VST instruments/effects, parameter automation, FAUST.
 
-- **[py_headless_daw](https://github.com/hq9000/py_headless_daw)** - A GUI-less DAW (Digital Audio Workstation) for producing electronic music using python
+- **[py_headless_daw](https://github.com/hq9000/py_headless_daw)** - A GUI-less DAW for producing electronic music using python
 
 ## Dsp
 
-- **[cyfaust](https://github.com/shakfu/cyfaust)** - A cython wrapper of the faust interpreter with rtaudio support. Includes box api and signal support.
-
 - **[pippi](https://pippi.world)** - Pippi is a library of computer music modules for python.
-
-- **[popsicle](https://pypi.org/project/popsicle)** - Popsicle aims to bridge the JUCE c++ framework to python.
 
 - **[pyo](http://ajaxsoundstudio.com/pyodoc/index.html)** - Pyo is a Python module written in C to help digital signal processing
 
-- **[signalflow](https://github.com/ideoforms/signalflow)** - An audio synthesis framework for Python and C++, designed for clear and concise expression of complex musical ideas
+- **[signalflow](https://github.com/ideoforms/signalflow)** - An audio synthesis framework for Python and C++.
 
 - **[zignal](https://github.com/ronnyandersson/zignal)** - Python audio signal processing library
 
@@ -160,39 +136,49 @@ This list contains **78** projects across **29** categories.
 
 - **[gum](https://github.com/stackp/Gum)** - Simple, hackable audio editor for Linux.
 
+## Faust
+
+- **[cyfaust](https://github.com/shakfu/cyfaust)** - A cython wrapper of the faust interpreter with rtaudio support.
+
 ## Fx
 
-- **[pysndfx](https://github.com/carlthome/python-audio-effects)** - Apply audio effects such as reverb and EQ directly to audio files or NumPy ndarrays.
+- **[pysndfx](https://github.com/carlthome/python-audio-effects)** - Apply audio effects such as reverb and EQ directly to audio files.
 
 ## Livecoding
 
 - **[glicol](https://glicol.org)** - A graph-oriented live coding language written in Rust.
 
-- **[megra.rs](https://github.com/the-drunk-coder/megra.rs)** - Mégra is a mini-language to make music with variable-order markov chains and some other stochastic shenanigans.
+- **[megra.rs](https://github.com/the-drunk-coder/megra.rs)** - A mini-language to make music with variable-order markov chains.
 
-- **[orca](https://github.com/hundredrabbits/Orca-c)** - Orca Live Programming Environment (C Port) with MIDI sequencing in the terminal.
+- **[runal](https://empr.cl/runal)** - A creative coding environment for the terminal
 
-- **[sardine](https://sardine.raphaelforment.fr)** - Sardine is a hacker-friendly Python library tailored for musical improvisation, algorithmic composition and much more. Sardine transforms your Python interpreter into a music instrument for writing melodic and rhythmic patterns mapped to any electronic instrument (MIDI, OSC and/or SuperCollider).
+- **[sardine](https://sardine.raphaelforment.fr)** - A hacker-friendly Python library for musical improvisation.
 
-- **[strudel](https://strudel.cc)** - Web-based environment for live coding algorithmic patterns, incorporating a faithful port of TidalCycles to JavaScript.
+- **[strudel](https://strudel.cc)** - Web-based environment for live coding algorithmic patterns.
 
 - **[synchroton](https://synchroton.thatother.dev)** - A graph-oriented live coding language written in python.
 
 ## Looping
 
-- **[looper](https://nolannicholson.com/2019/10/27/looping-music-seamlessly.html)** - A script for repeating music seamlessly and endlessly, designed with video game music in mind.
+- **[looper](https://nolannicholson.com/2019/10/27/looping-music-seamlessly.html)** - A script for repeating music seamlessly and endlessly.
+
+## Max Msp
+
+- **[py2max](https://github.com/shakfu/py2max)** - A python library for offline generation of Max/MSP patcher files.
 
 ## Midi
 
-- **[cane](https://github.com/Jackojc/cane)** - A small MIDI sequencer DSL designed around vectors and euclidean rhythms
+- **[midish](http://www.midish.org)** - Real-time MIDI sequencer & filter with shell-like user interface for Linux and BSD
 
-- **[line](https://github.com/pd3v/line)** - A tiny command-line midi sequencer for live coding (supports ableton link).
+- **[miditui](https://github.com/minimaxir/miditui)** - An interactive terminal app/UI for MIDI composing, mixing, and playback—written in Rust
+
+- **[midivisualizer](https://github.com/kosua20/MIDIVisualizer)** - A small MIDI visualizer tool, using OpenGL
 
 - **[receivemidi](https://github.com/gbevin/ReceiveMIDI)** - Multi-platform command-line tool to monitor and receive MIDI messages
 
 - **[sendmidi](https://github.com/gbevin/SendMIDI)** - Multi-platform command-line tool to send out MIDI messages
 
-- **[textbeat](https://github.com/flipcoder/textbeat)** - plaintext music sequencer and midi shell, with vim playback
+- **[showmidi](https://github.com/gbevin/ShowMIDI)** - Multi-platform GUI application to visualize MIDI activity
 
 ## Monome
 
@@ -200,21 +186,27 @@ This list contains **78** projects across **29** categories.
 
 ## Music Programming
 
+- **[cane](https://github.com/Jackojc/cane)** - A small MIDI sequencer DSL designed around vectors and euclidean rhythms
+
 - **[gwion](https://gwion.github.io/Gwion/)** - Gwion is a programming language, aimed at making music.
 
-- **[musicpy](https://musicpy.readthedocs.io/en/latest/)** - Musicpy is a music programming language in Python designed to write music in very handy syntax through music theory and algorithms.
+- **[musicpy](https://musicpy.readthedocs.io/en/latest/)** - Musicpy is a music programming language in Python.
 
-- **[pychords](https://github.com/YouGuessedMyName/pychords)** - Pychords is a package that can be used to model music in python, in particular notes, chords and scales. This project was started back when musicpy did not exist yet.
+- **[orca](https://github.com/hundredrabbits/Orca-c)** - Orca Live Programming Environment (C Port) with MIDI sequencing in the terminal.
+
+## Music Theory
+
+- **[pychords](https://github.com/YouGuessedMyName/pychords)** - Pychords is a package for modelling music in python.
 
 ## Plugins
 
-- **[cython-vst-loader](https://github.com/hq9000/cython-vst-loader)** - a cython-based loader for VST audio plugins proving a clean python object-oriented interface
+- **[cython-vst-loader](https://github.com/hq9000/cython-vst-loader)** - A cython-based loader for VST audio plugins.
 
 - **[dplug](https://dplug.org)** - Audio plugin framework. VST2/VST3/AU/AAX/LV2 for Linux/macOS/Windows.
 
 - **[pedalboard](https://github.com/spotify/pedalboard)** - A Python library for adding effects to audio.
 
-- **[renderman](https://github.com/fedden/RenderMan)** - Command line C++ and Python VSTi Host library with MFCC, FFT, RMS and audio extraction and .wav writing.
+- **[renderman](https://github.com/fedden/RenderMan)** - Command line C++ and Python VSTi Host library.
 
 ## Random
 
@@ -230,7 +222,17 @@ This list contains **78** projects across **29** categories.
 
 - **[chords2midi](https://github.com/Miserlou/chords2midi)** - Create MIDI files from numerical chord progressions.
 
-- **[isobar](https://ideoforms.github.io/isobar)** - A Python library for creating and manipulating musical patterns, designed for use in algorithmic composition, generative music and sonification. Can be used to generate MIDI events, MIDI files, OSC messages, or custom events.
+- **[isobar](https://ideoforms.github.io/isobar)** - A Python library for creating and manipulating musical patterns.
+
+- **[line](https://github.com/pd3v/line)** - A tiny command-line midi sequencer for live coding.
+
+- **[musicli](https://frie.dev/musicli)** - TUI MIDI sequencer
+
+- **[sektron](https://empr.cl/sektron)** - A midi step sequencer in the terminal, made with live performance in mind
+
+- **[signls](https://empr.cl/signls)** - A non-linear, generative midi sequencer in the terminal
+
+- **[textbeat](https://github.com/flipcoder/textbeat)** - Plaintext music sequencer and midi shell, with vim playback
 
 ## Speech
 
@@ -248,15 +250,19 @@ This list contains **78** projects across **29** categories.
 
 - **[scaper](https://github.com/justinsalamon/scaper)** - A library for soundscape synthesis and augmentation
 
-- **[tones](https://github.com/eriknyquist/tones)** - Pure-python library for generating audio tones, with support for polyphony, pitch-bending and vibrato
+- **[tones](https://github.com/eriknyquist/tones)** - Pure-python library for generating audio tones.
 
 ## Timestretching
 
-- **[pyrubberband](https://github.com/bmcfee/pyrubberband)** - python wrapper for rubberband
+- **[pyrubberband](https://github.com/bmcfee/pyrubberband)** - Python wrapper for rubberband
 
-- **[timestretch](https://github.com/spluta/TimeStretch)** - The NessStretch is a refinement of Paul Nasca's excellent PaulStretch algorithm. PaulStretch uses a single frame size throughout the entire frequency range. The NessStretch's layered analysis bands are a better match for human frequency perception, and do a better job of resolving shorter, noisier high-frequency sounds (sibilance, snares, etc.).
+- **[timestretch](https://github.com/spluta/TimeStretch)** - The NessStretch is a refinement of PaulStretch algorithm.
 
 ## Tracker
+
+- **[extended-tracker](https://github.com/pckerneis/extended-tracker)** - A declarative language and a suite of tools for interactive music and live coding
+
+- **[miditracker](https://zuggamasta.de/projects/miditracker)** - A small python Music Tracker that is meant to be run from a CLI on many platforms
 
 - **[plebtracker](https://github.com/danfrz/PLEBTracker)** - Ncurses based audio tracker program inspired by goattracker and milkytracker
 
@@ -264,21 +270,15 @@ This list contains **78** projects across **29** categories.
 
 - **[audiohit](https://github.com/icaroferre/AudioHit)** - Rust-based CLI for batch processing audio samples.
 
-- **[py2max](https://github.com/shakfu/py2max)** - A python library for offline generation of Max/MSP patcher (.maxpat) files.
+- **[sox-tricks](https://github.com/madskjeldgaard/sox-tricks)** - Command line tools for batch processing audio files.
 
-- **[sox-tricks](https://github.com/madskjeldgaard/sox-tricks)** - Command line tools that make batch processing, editing and organization of audio files a fast and painless task. Based on the SoX audio tool.
-
-- **[soxbindings](https://github.com/pseeth/soxbindings)** - Python bindings for SoX, aiming to replicate a subset of the command line sox utility.
+- **[soxbindings](https://github.com/pseeth/soxbindings)** - Python bindings for SoX.
 
 ## Visualization
 
-- **[midivisualizer](https://github.com/kosua20/MIDIVisualizer)** - A small MIDI visualizer tool, using OpenGL
-
-- **[showmidi](https://github.com/gbevin/ShowMIDI)** - Multi-platform GUI application to effortlessly visualize MIDI activity
-
 - **[visual_midi](https://alexandredubreuil.com/publications/2020-09-13-introducing-visual-midi-for-pianoroll-visualization/)** - Converts a pretty midi sequence to a bokeh plot.
 
-- **[wav2vec](https://github.com/cristoper/wav2vec)** - Python package and cli tool to convert wave files (WAV or AIFF) to vector graphics (SVG, PostScript, CVS)
+- **[wav2vec](https://github.com/cristoper/wav2vec)** - Python package and cli tool to convert wave files to vector graphics.
 
 ## Wavetables
 
@@ -289,10 +289,6 @@ This list contains **78** projects across **29** categories.
 ## Contributing
 
 Contributions welcome! Please read the contribution guidelines first.
-
-## Documentation
-
-See [docs/README.md](docs/README.md) for documentation on the CLI tool used to manage this list.
 
 ## License
 
