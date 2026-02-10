@@ -128,6 +128,13 @@
       "repo": "https://github.com/shakfu/chuck-max"
     },
     {
+      "name": "coremusic",
+      "category": "audio-framework",
+      "desc": "Python bindings for Apple CoreAudio and CoreMIDI",
+      "url": null,
+      "repo": "https://github.com/shakfu/coremusic"
+    },
+    {
       "name": "crepe",
       "category": "analysis",
       "desc": "A Convolutional REpresentation for Pitch Estimation.",
@@ -156,6 +163,27 @@
       "repo": "https://github.com/csound/ctcsound"
     },
     {
+      "name": "cycdp",
+      "category": "dsp",
+      "desc": "Python bindings for the CDP8(Composers Desktop Project) audio processing library",
+      "url": null,
+      "repo": "https://github.com/shakfu/cycdp"
+    },
+    {
+      "name": "cycsound",
+      "category": "csound",
+      "desc": "Cython bindings for Csound 6.x",
+      "url": null,
+      "repo": "https://github.com/shakfu/cycsound"
+    },
+    {
+      "name": "cydsp",
+      "category": "dsp",
+      "desc": "Python DSP toolkit wrapping a number of popular C++ libraries",
+      "url": null,
+      "repo": "https://github.com/shakfu/cydsp"
+    },
+    {
       "name": "cyfaust",
       "category": "faust",
       "desc": "A cython wrapper of the faust interpreter with rtaudio support.",
@@ -168,6 +196,13 @@
       "desc": "A comprehensive  cython wrapper of miniaudio",
       "url": null,
       "repo": "https://github.com/shakfu/cyminiaudio"
+    },
+    {
+      "name": "cysox",
+      "category": "audio-framework",
+      "desc": "A Python audio processing library which uses cython to wrap libsox",
+      "url": null,
+      "repo": "https://github.com/shakfu/cysox"
     },
     {
       "name": "cython-sounddevice",
@@ -308,6 +343,13 @@
       "desc": "A small MIDI visualizer tool, using OpenGL",
       "url": null,
       "repo": "https://github.com/kosua20/MIDIVisualizer"
+    },
+    {
+      "name": "minihost",
+      "category": "plugins",
+      "desc": "A minimal python audio plugin host library for loading and processing VST3 and AudioUnit plugins.",
+      "url": null,
+      "repo": "https://github.com/shakfu/minihost"
     },
     {
       "name": "musicli",
