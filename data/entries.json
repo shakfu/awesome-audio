@@ -199,7 +199,7 @@
     },
     {
       "name": "cysox",
-      "category": "audio-framework",
+      "category": "utility",
       "desc": "A Python audio processing library which uses cython to wrap libsox",
       "url": null,
       "repo": "https://github.com/shakfu/cysox"
@@ -233,6 +233,13 @@
       "repo": "https://github.com/AuburnSounds/Dplug"
     },
     {
+      "name": "dsp-graph",
+      "category": "dsp",
+      "desc": "A Python DSL for defining DSP signal graphs, compiling them to optimized C++",
+      "url": null,
+      "repo": "https://github.com/shakfu/dsp-graph"
+    },
+    {
       "name": "essentia",
       "category": "analysis",
       "desc": "C++ library for audio and music analysis, description and synthesis.",
@@ -252,6 +259,13 @@
       "desc": "Python livecoding with supercollider",
       "url": "https://foxdot.org",
       "repo": "https://github.com/Qirky/FoxDot"
+    },
+    {
+      "name": "gen-dsp",
+      "category": "utility",
+      "desc": "Converts code exported from a Max gen~ object into multiple dsp plugin architectures.",
+      "url": null,
+      "repo": "https://github.com/shakfu/gen-dsp"
     },
     {
       "name": "glicol",
@@ -364,6 +378,20 @@
       "desc": "Musicpy is a music programming language in Python.",
       "url": "https://musicpy.readthedocs.io/en/latest/",
       "repo": "https://github.com/Rainbow-Dreamer/musicpy"
+    },
+    {
+      "name": "nanosynth",
+      "category": "synthesis",
+      "desc": "A python package which uses nanobind to embed supercollider's libscsynth",
+      "url": null,
+      "repo": "https://github.com/shakfu/nanosynth"
+    },
+    {
+      "name": "numchuck",
+      "category": "chuck",
+      "desc": "A python wrapper for the chuck language",
+      "url": null,
+      "repo": "https://github.com/shakfu/numchuck"
     },
     {
       "name": "orca",

@@ -4,9 +4,9 @@
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-This list contains **96** projects across **34** categories.
+This list contains **100** projects across **34** categories.
 
-*Last updated: 2026-02-10*
+*Last updated: 2026-02-14*
 
 ## Contents
 
@@ -78,8 +78,6 @@ This list contains **96** projects across **34** categories.
 
 - **[coremusic](https://github.com/shakfu/coremusic)** - Python bindings for Apple CoreAudio and CoreMIDI
 
-- **[cysox](https://github.com/shakfu/cysox)** - A Python audio processing library which uses cython to wrap libsox
-
 - **[popsicle](https://pypi.org/project/popsicle)** - Popsicle aims to bridge the JUCE c++ framework to python.
 
 
@@ -118,6 +116,8 @@ This list contains **96** projects across **34** categories.
 
 - **[chuck-max](https://github.com/shakfu/chuck-max)** - A max/msp external which embeds the chuck engine.
 
+- **[numchuck](https://github.com/shakfu/numchuck)** - A python wrapper for the chuck language
+
 - **[pd-chuck](https://github.com/shakfu/pd-chuck)** - The chuck engine in a pure-data external
 
 
@@ -148,6 +148,8 @@ This list contains **96** projects across **34** categories.
 - **[cycdp](https://github.com/shakfu/cycdp)** - Python bindings for the CDP8(Composers Desktop Project) audio processing library
 
 - **[cydsp](https://github.com/shakfu/cydsp)** - Python DSP toolkit wrapping a number of popular C++ libraries
+
+- **[dsp-graph](https://github.com/shakfu/dsp-graph)** - A Python DSL for defining DSP signal graphs, compiling them to optimized C++
 
 - **[pippi](https://pippi.world)** - Pippi is a library of computer music modules for python.
 
@@ -299,6 +301,8 @@ This list contains **96** projects across **34** categories.
 
 ## Synthesis
 
+- **[nanosynth](https://github.com/shakfu/nanosynth)** - A python package which uses nanobind to embed supercollider's libscsynth
+
 - **[scaper](https://github.com/justinsalamon/scaper)** - A library for soundscape synthesis and augmentation
 
 - **[tones](https://github.com/eriknyquist/tones)** - Pure-python library for generating audio tones.
@@ -323,6 +327,10 @@ This list contains **96** projects across **34** categories.
 ## Utility
 
 - **[audiohit](https://github.com/icaroferre/AudioHit)** - Rust-based CLI for batch processing audio samples.
+
+- **[cysox](https://github.com/shakfu/cysox)** - A Python audio processing library which uses cython to wrap libsox
+
+- **[gen-dsp](https://github.com/shakfu/gen-dsp)** - Converts code exported from a Max gen~ object into multiple dsp plugin architectures.
 
 - **[sox-tricks](https://github.com/madskjeldgaard/sox-tricks)** - Command line tools for batch processing audio files.
 
