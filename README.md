@@ -6,7 +6,7 @@
 
 This list contains **100** projects across **34** categories.
 
-*Last updated: 2026-02-14*
+*Last updated: 2026-03-05*
 
 ## Contents
 
@@ -294,14 +294,14 @@ This list contains **100** projects across **34** categories.
 
 - **[foxdot](https://foxdot.org)** - Python livecoding with supercollider
 
+- **[nanosynth](https://github.com/shakfu/nanosynth)** - A python package which uses nanobind to embed supercollider's libscsynth
+
 - **[python-supercollider](https://github.com/ideoforms/python-supercollider)** - Python client for the SuperCollider audio synthesis server
 
 - **[supriya](http://josiahwolfoberholtzer.com/supriya/)** - A Python API for SuperCollider
 
 
 ## Synthesis
-
-- **[nanosynth](https://github.com/shakfu/nanosynth)** - A python package which uses nanobind to embed supercollider's libscsynth
 
 - **[scaper](https://github.com/justinsalamon/scaper)** - A library for soundscape synthesis and augmentation
 

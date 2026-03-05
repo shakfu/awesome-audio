@@ -381,7 +381,7 @@
     },
     {
       "name": "nanosynth",
-      "category": "synthesis",
+      "category": "supercollider",
       "desc": "A python package which uses nanobind to embed supercollider's libscsynth",
       "url": null,
       "repo": "https://github.com/shakfu/nanosynth"
