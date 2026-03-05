@@ -8,6 +8,7 @@ Zero external dependencies - stdlib only.
 from __future__ import annotations
 
 import argparse
+import html as html_mod
 import json
 import os
 import re
@@ -797,34 +798,182 @@ def fetch_entry_stats(entry_name: str, repo_url: str) -> RepoResult:
         return RepoResult(entry_name=entry_name, repo_url=repo_url, error=str(e))
 
 
+GITHUB_CACHE_SCHEMA = """
+CREATE TABLE IF NOT EXISTS github_cache (
+    repo_url TEXT PRIMARY KEY,
+    stats_json TEXT NOT NULL,
+    fetched_at TEXT NOT NULL
+)
+"""
+
+DEFAULT_CACHE_MAX_AGE_HOURS = 24
+
+
+def _init_github_cache(conn: sqlite3.Connection) -> None:
+    """Create the github_cache table if it doesn't exist."""
+    conn.execute(GITHUB_CACHE_SCHEMA)
+    conn.commit()
+
+
+def _repo_stats_to_json(stats: RepoStats) -> str:
+    """Serialize RepoStats to JSON string."""
+    data = {
+        "owner": stats.owner,
+        "name": stats.name,
+        "full_name": stats.full_name,
+        "description": stats.description,
+        "stars": stats.stars,
+        "forks": stats.forks,
+        "open_issues": stats.open_issues,
+        "watchers": stats.watchers,
+        "language": stats.language,
+        "license": stats.license,
+        "created_at": stats.created_at.isoformat() if stats.created_at else None,
+        "updated_at": stats.updated_at.isoformat() if stats.updated_at else None,
+        "pushed_at": stats.pushed_at.isoformat() if stats.pushed_at else None,
+        "archived": stats.archived,
+        "fork": stats.fork,
+        "default_branch": stats.default_branch,
+        "topics": stats.topics,
+        "homepage": stats.homepage,
+    }
+    return json.dumps(data)
+
+
+def _repo_stats_from_json(s: str) -> RepoStats:
+    """Deserialize RepoStats from JSON string."""
+    data = json.loads(s)
+
+    def parse_dt(v: Optional[str]) -> Optional[datetime]:
+        if v:
+            return datetime.fromisoformat(v)
+        return None
+
+    return RepoStats(
+        owner=data["owner"],
+        name=data["name"],
+        full_name=data["full_name"],
+        description=data.get("description"),
+        stars=data["stars"],
+        forks=data["forks"],
+        open_issues=data["open_issues"],
+        watchers=data["watchers"],
+        language=data.get("language"),
+        license=data.get("license"),
+        created_at=parse_dt(data.get("created_at")),
+        updated_at=parse_dt(data.get("updated_at")),
+        pushed_at=parse_dt(data.get("pushed_at")),
+        archived=data.get("archived", False),
+        fork=data.get("fork", False),
+        default_branch=data.get("default_branch", "main"),
+        topics=data.get("topics", []),
+        homepage=data.get("homepage"),
+    )
+
+
+def _read_cache(
+    conn: sqlite3.Connection, repo_url: str, max_age_hours: float
+) -> Optional[RepoStats]:
+    """Read cached stats if fresh enough."""
+    row = conn.execute(
+        "SELECT stats_json, fetched_at FROM github_cache WHERE repo_url = ?",
+        (repo_url,),
+    ).fetchone()
+    if not row:
+        return None
+    fetched_at = datetime.fromisoformat(row["fetched_at"])
+    age_hours = (datetime.now() - fetched_at).total_seconds() / 3600
+    if age_hours > max_age_hours:
+        return None
+    return _repo_stats_from_json(row["stats_json"])
+
+
+def _write_cache(
+    conn: sqlite3.Connection, repo_url: str, stats: RepoStats
+) -> None:
+    """Write stats to cache."""
+    conn.execute(
+        "INSERT OR REPLACE INTO github_cache (repo_url, stats_json, fetched_at) "
+        "VALUES (?, ?, ?)",
+        (repo_url, _repo_stats_to_json(stats), datetime.now().isoformat()),
+    )
+    conn.commit()
+
+
 def run_fetch_stats(
     entries: list[dict[str, Any]],
     concurrency: int = 5,
     progress_callback: Optional[Callable[[int, int, str], None]] = None,
+    cache_db_path: Optional[Path] = None,
+    max_age_hours: float = DEFAULT_CACHE_MAX_AGE_HOURS,
 ) -> list[RepoResult]:
-    """Fetch stats for all entries with GitHub repos using thread pool."""
+    """Fetch stats for all entries with GitHub repos using thread pool.
+
+    If cache_db_path is provided, cached results are used when fresh enough.
+    """
     github_entries = [
         e for e in entries if e.get("repo") and "github.com" in e.get("repo", "")
     ]
 
-    results = []
+    results: list[RepoResult] = []
+    to_fetch: list[tuple[int, dict[str, Any]]] = []
 
+    # Check cache first
+    cache_conn: Optional[sqlite3.Connection] = None
+    if cache_db_path is not None:
+        cache_conn = sqlite3.connect(cache_db_path)
+        cache_conn.row_factory = sqlite3.Row
+        _init_github_cache(cache_conn)
+
+        for i, entry in enumerate(github_entries):
+            repo_url = entry.get("repo", "")
+            cached = _read_cache(cache_conn, repo_url, max_age_hours)
+            if cached is not None:
+                results.append(
+                    RepoResult(
+                        entry_name=entry.get("name", "unknown"),
+                        repo_url=repo_url,
+                        stats=cached,
+                    )
+                )
+                if progress_callback:
+                    progress_callback(
+                        len(results), len(github_entries), entry.get("name", "")
+                    )
+            else:
+                to_fetch.append((i, entry))
+    else:
+        to_fetch = list(enumerate(github_entries))
+
+    cache_hits = len(results)
+
+    # Fetch uncached entries
     with ThreadPoolExecutor(max_workers=concurrency) as executor:
         futures = {
             executor.submit(
                 fetch_entry_stats, entry.get("name", "unknown"), entry.get("repo", "")
             ): (i, entry)
-            for i, entry in enumerate(github_entries)
+            for i, entry in to_fetch
         }
 
         for future in as_completed(futures):
             i, entry = futures[future]
             result = future.result()
             results.append(result)
+
+            # Write successful results to cache
+            if cache_conn is not None and result.success and result.stats is not None:
+                _write_cache(cache_conn, entry.get("repo", ""), result.stats)
+
             if progress_callback:
                 progress_callback(
                     len(results), len(github_entries), entry.get("name", "")
                 )
+
+    if cache_conn is not None:
+        if cache_hits > 0:
+            print(f"  (cache: {cache_hits} hit, {len(to_fetch)} fetched)")
+        cache_conn.close()
 
     return results
 
@@ -1287,6 +1436,329 @@ def generate_readme(
 
 
 # =============================================================================
+# HTML Report
+# =============================================================================
+
+HTML_REPORT_TEMPLATE = Template("""\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Awesome Audio Report</title>
+<style>
+  :root {
+    --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e; --border: #30363d;
+    --card: #161b22; --accent: #58a6ff; --green: #3fb950; --yellow: #d29922;
+    --red: #f85149; --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--fg); line-height: 1.5; padding: 2rem;
+  }
+  h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.25rem; margin: 2rem 0 1rem; color: var(--accent); }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem; text-align: center;
+  }
+  .stat-card .value { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .stat-card .label { color: var(--muted); font-size: 0.85rem; }
+  .cat-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem; margin-bottom: 2rem;
+  }
+  .cat-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.5rem 0.75rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cat-item .name { font-size: 0.9rem; }
+  .cat-item .count {
+    background: var(--border); border-radius: 10px;
+    padding: 0.1rem 0.5rem; font-size: 0.8rem; color: var(--muted);
+  }
+  table {
+    width: 100%; border-collapse: collapse;
+    background: var(--card); border-radius: 8px; overflow: hidden;
+  }
+  th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+  th {
+    background: var(--border); cursor: pointer; user-select: none;
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--muted); white-space: nowrap;
+  }
+  th:hover { color: var(--fg); }
+  th.sorted-asc::after { content: " ^"; }
+  th.sorted-desc::after { content: " v"; }
+  td { font-size: 0.9rem; }
+  tr:hover td { background: rgba(88, 166, 255, 0.05); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge {
+    display: inline-block; padding: 0.1rem 0.5rem; border-radius: 10px;
+    font-size: 0.75rem; font-weight: 600;
+  }
+  .badge-active { background: rgba(63,185,80,0.15); color: var(--green); }
+  .badge-very-active { background: rgba(63,185,80,0.25); color: var(--green); }
+  .badge-maintained { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .badge-stale { background: rgba(248,81,73,0.15); color: var(--red); }
+  .badge-archived { background: rgba(248,81,73,0.25); color: var(--red); }
+  .badge-unknown { background: rgba(139,148,158,0.15); color: var(--muted); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .filter-bar { margin-bottom: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .filter-bar input, .filter-bar select {
+    background: var(--card); border: 1px solid var(--border); color: var(--fg);
+    padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.9rem;
+  }
+  .filter-bar input { min-width: 250px; }
+  .legend { margin-bottom: 1rem; }
+  .legend summary { cursor: pointer; color: var(--muted); font-size: 0.85rem; }
+  .legend-table { background: transparent; width: auto; margin-top: 0.5rem; }
+  .legend-table td { border: none; padding: 0.25rem 0.75rem 0.25rem 0; font-size: 0.85rem; color: var(--muted); }
+  footer { margin-top: 3rem; color: var(--muted); font-size: 0.8rem; text-align: center; }
+</style>
+</head>
+<body>
+<h1>Awesome Audio Report</h1>
+<p class="subtitle">Generated $generated_at</p>
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="value">$total_entries</div><div class="label">Projects</div></div>
+  <div class="stat-card"><div class="value">$total_categories</div><div class="label">Categories</div></div>
+  <div class="stat-card"><div class="value">$total_with_repo</div><div class="label">With Repo</div></div>
+  <div class="stat-card"><div class="value">$total_stars</div><div class="label">Combined Stars</div></div>
+</div>
+
+<h2>Categories</h2>
+<div class="cat-grid">
+$category_cards
+</div>
+
+<h2>Projects</h2>
+<details class="legend"><summary>Status legend</summary>
+<table class="legend-table">
+<tr><td><span class="badge badge-very-active">very active</span></td><td>Pushed within 30 days</td></tr>
+<tr><td><span class="badge badge-active">active</span></td><td>Pushed within 90 days</td></tr>
+<tr><td><span class="badge badge-maintained">maintained</span></td><td>Pushed within 1 year</td></tr>
+<tr><td><span class="badge badge-stale">stale</span></td><td>No push in over 1 year</td></tr>
+<tr><td><span class="badge badge-archived">archived</span></td><td>Archived on GitHub</td></tr>
+<tr><td><span class="badge badge-unknown">unknown</span></td><td>No data available</td></tr>
+</table>
+</details>
+<div class="filter-bar">
+  <input type="text" id="search" placeholder="Filter projects...">
+  <select id="cat-filter"><option value="">All categories</option>$category_options</select>
+  <select id="status-filter"><option value="">All statuses</option>
+    <option value="very active">Very Active</option><option value="active">Active</option>
+    <option value="maintained">Maintained</option><option value="stale">Stale</option>
+    <option value="archived">Archived</option>
+  </select>
+</div>
+<table id="projects">
+<thead>
+<tr>
+  <th data-col="0">Name</th>
+  <th data-col="1">Category</th>
+  <th data-col="2">Description</th>
+  <th data-col="3" class="num">Stars</th>
+  <th data-col="4" class="num">Forks</th>
+  <th data-col="5">Language</th>
+  <th data-col="6">Status</th>
+</tr>
+</thead>
+<tbody>
+$table_rows
+</tbody>
+</table>
+
+<footer>Generated by curator $version</footer>
+
+<script>
+(function() {
+  const table = document.getElementById("projects");
+  const tbody = table.querySelector("tbody");
+  const headers = table.querySelectorAll("th");
+  const searchInput = document.getElementById("search");
+  const catFilter = document.getElementById("cat-filter");
+  const statusFilter = document.getElementById("status-filter");
+  let sortCol = 3, sortAsc = false;
+
+  function sortTable() {
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+    rows.sort((a, b) => {
+      let va = a.children[sortCol].getAttribute("data-sort") || a.children[sortCol].textContent;
+      let vb = b.children[sortCol].getAttribute("data-sort") || b.children[sortCol].textContent;
+      if (!isNaN(va) && !isNaN(vb)) { va = Number(va); vb = Number(vb); }
+      if (va < vb) return sortAsc ? -1 : 1;
+      if (va > vb) return sortAsc ? 1 : -1;
+      return 0;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+    headers.forEach(h => h.classList.remove("sorted-asc", "sorted-desc"));
+    headers[sortCol].classList.add(sortAsc ? "sorted-asc" : "sorted-desc");
+  }
+
+  headers.forEach(h => {
+    h.addEventListener("click", () => {
+      const col = parseInt(h.dataset.col);
+      if (sortCol === col) { sortAsc = !sortAsc; } else { sortCol = col; sortAsc = true; }
+      sortTable();
+    });
+  });
+
+  function filterRows() {
+    const q = searchInput.value.toLowerCase();
+    const cat = catFilter.value.toLowerCase();
+    const status = statusFilter.value.toLowerCase();
+    tbody.querySelectorAll("tr").forEach(row => {
+      const text = row.textContent.toLowerCase();
+      const rowCat = (row.children[1].textContent || "").toLowerCase();
+      const rowStatus = (row.children[6].textContent || "").toLowerCase().trim();
+      const matchQ = !q || text.includes(q);
+      const matchCat = !cat || rowCat === cat;
+      const matchStatus = !status || rowStatus === status;
+      row.style.display = (matchQ && matchCat && matchStatus) ? "" : "none";
+    });
+  }
+
+  searchInput.addEventListener("input", filterRows);
+  catFilter.addEventListener("change", filterRows);
+  statusFilter.addEventListener("change", filterRows);
+
+  sortTable();
+})();
+</script>
+</body>
+</html>
+""")
+
+
+def generate_html_report(
+    db_path: Path,
+    output_path: Optional[Path] = None,
+    force: bool = False,
+) -> str:
+    """Generate an HTML report from database entries and cached GitHub stats."""
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM entry ORDER BY category, name")
+    rows = cursor.fetchall()
+
+    # Load cached GitHub stats if available
+    cache: dict[str, RepoStats] = {}
+    try:
+        cache_rows = conn.execute(
+            "SELECT repo_url, stats_json FROM github_cache"
+        ).fetchall()
+        for cr in cache_rows:
+            cache[cr["repo_url"]] = _repo_stats_from_json(cr["stats_json"])
+    except sqlite3.OperationalError:
+        pass
+
+    conn.close()
+
+    if not rows:
+        return "<html><body><p>No entries.</p></body></html>"
+
+    # Category counts
+    cat_counts: dict[str, int] = defaultdict(int)
+    for row in rows:
+        cat_counts[row["category"]] += 1
+
+    total_stars = 0
+    total_with_repo = 0
+    table_rows_html = []
+
+    for row in rows:
+        name = html_mod.escape(row["name"])
+        category = html_mod.escape(normalize_category(row["category"]))
+        desc = html_mod.escape(row["description"] or "")
+        url = row["url"] or row["repo"] or ""
+        repo_url = row["repo"] or ""
+
+        if repo_url:
+            total_with_repo += 1
+
+        stats = cache.get(repo_url)
+        stars = stats.stars if stats else (row["stars"] if row["stars"] else 0)
+        forks = stats.forks if stats else (row["forks"] if row["forks"] else 0)
+        language = html_mod.escape(
+            (stats.language if stats else row["language"]) or ""
+        )
+        total_stars += stars
+
+        if stats:
+            status = stats.activity_status
+        elif row["archived"]:
+            status = "archived"
+        else:
+            status = "unknown"
+
+        badge_cls = f"badge-{status.replace(' ', '-')}"
+        status_html = f'<span class="badge {badge_cls}">{html_mod.escape(status)}</span>'
+
+        name_cell = f'<a href="{html_mod.escape(url)}">{name}</a>' if url else name
+
+        table_rows_html.append(
+            f"<tr>"
+            f"<td>{name_cell}</td>"
+            f"<td>{category}</td>"
+            f"<td>{desc}</td>"
+            f'<td class="num" data-sort="{stars}">{stars:,}</td>'
+            f'<td class="num" data-sort="{forks}">{forks:,}</td>'
+            f"<td>{language}</td>"
+            f"<td>{status_html}</td>"
+            f"</tr>"
+        )
+
+    cat_cards_html = []
+    cat_options_html = []
+    for cat_name in sorted(cat_counts.keys()):
+        title = html_mod.escape(normalize_category(cat_name))
+        count = cat_counts[cat_name]
+        cat_cards_html.append(
+            f'<div class="cat-item"><span class="name">{title}</span>'
+            f'<span class="count">{count}</span></div>'
+        )
+        cat_options_html.append(
+            f'<option value="{title}">{title}</option>'
+        )
+
+    content = HTML_REPORT_TEMPLATE.substitute(
+        generated_at=datetime.now().strftime("%Y-%m-%d %H:%M"),
+        total_entries=len(rows),
+        total_categories=len(cat_counts),
+        total_with_repo=total_with_repo,
+        total_stars=f"{total_stars:,}",
+        category_cards="\n".join(cat_cards_html),
+        category_options="\n".join(cat_options_html),
+        table_rows="\n".join(table_rows_html),
+        version=__version__,
+    )
+
+    if output_path:
+        if output_path.exists() and not force:
+            response = input(f"{output_path} already exists. Overwrite? [y/N]: ")
+            if response.lower() not in ("y", "yes"):
+                print("Aborted.")
+                return content
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, "w") as f:
+            f.write(content)
+
+    return content
+
+
+# =============================================================================
 # Terminal Colors (ANSI)
 # =============================================================================
 
@@ -1632,7 +2104,12 @@ def cmd_github(args: argparse.Namespace) -> int:
     def progress(current: int, total: int, name: str) -> None:
         print(f"  [{current}/{total}] {name}")
 
-    results = run_fetch_stats(entries, args.concurrency, progress)
+    cache_db = None if args.no_cache else (Path(args.db) if args.db else DEFAULT_DB)
+    results = run_fetch_stats(
+        entries, args.concurrency, progress,
+        cache_db_path=cache_db,
+        max_age_hours=args.max_age,
+    )
 
     successful = [r for r in results if r.success]
     failed = [r for r in results if not r.success]
@@ -1747,7 +2224,12 @@ def cmd_stale(args: argparse.Namespace) -> int:
     def progress(current: int, total: int, name: str) -> None:
         print(f"  [{current}/{total}] {name}")
 
-    results = run_fetch_stats(entries, args.concurrency, progress)
+    cache_db = None if args.no_cache else DEFAULT_DB
+    results = run_fetch_stats(
+        entries, args.concurrency, progress,
+        cache_db_path=cache_db,
+        max_age_hours=args.max_age,
+    )
 
     stale_repos: list[RepoResult] = []
     archived_repos: list[RepoResult] = []
@@ -1819,6 +2301,28 @@ def cmd_generate(args: argparse.Namespace) -> int:
 
     if output:
         cprint(f"Generated README at {output}", Color.GREEN)
+    else:
+        print(content)
+
+    return 0
+
+
+def cmd_report(args: argparse.Namespace) -> int:
+    """Generate an HTML report."""
+    db_file = Path(args.db) if args.db else DEFAULT_DB
+
+    if not db_file.exists():
+        cprint(f"Database not found: {db_file}", Color.RED)
+        print("Run 'curator import' first to create the database.")
+        return 1
+
+    output = Path(args.output) if args.output else None
+    force = getattr(args, "force", False)
+
+    content = generate_html_report(db_file, output, force=force)
+
+    if output:
+        cprint(f"Generated HTML report at {output}", Color.GREEN)
     else:
         print(content)
 
@@ -2117,6 +2621,13 @@ def main() -> int:
         "--update-db", action="store_true", help="Update database with topics"
     )
     p.add_argument("--db", help="Path to SQLite database")
+    p.add_argument(
+        "--max-age", type=float, default=DEFAULT_CACHE_MAX_AGE_HOURS,
+        help=f"Max cache age in hours (default: {DEFAULT_CACHE_MAX_AGE_HOURS})",
+    )
+    p.add_argument(
+        "--no-cache", action="store_true", help="Bypass cache, fetch all from API"
+    )
     p.set_defaults(func=cmd_github)
 
     # stale
@@ -2125,6 +2636,13 @@ def main() -> int:
     p.add_argument("--days", type=int, default=365, help="Days since last push")
     p.add_argument(
         "-c", "--concurrency", type=int, default=5, help="Concurrent requests"
+    )
+    p.add_argument(
+        "--max-age", type=float, default=DEFAULT_CACHE_MAX_AGE_HOURS,
+        help=f"Max cache age in hours (default: {DEFAULT_CACHE_MAX_AGE_HOURS})",
+    )
+    p.add_argument(
+        "--no-cache", action="store_true", help="Bypass cache, fetch all from API"
     )
     p.set_defaults(func=cmd_stale)
 
@@ -2140,6 +2658,20 @@ def main() -> int:
         help="Overwrite output file without prompting",
     )
     p.set_defaults(func=cmd_generate)
+
+    # report
+    p = subparsers.add_parser("report", help="Generate HTML report")
+    p.add_argument("--db", help="Path to SQLite database")
+    p.add_argument(
+        "-o", "--output", default="build/report.html", help="Output HTML path (default: build/report.html)"
+    )
+    p.add_argument(
+        "-f",
+        "--force",
+        action="store_true",
+        help="Overwrite output file without prompting",
+    )
+    p.set_defaults(func=cmd_report)
 
     # sort
     p = subparsers.add_parser("sort", help="Sort entries.json file")

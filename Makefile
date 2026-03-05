@@ -1,4 +1,4 @@
-.PHONY: help clean lint format validate sort import check github stale stats generate
+.PHONY: help clean lint format validate sort import check update stale stats generate report
 
 CURATOR := python3 scripts/curator.py
 
@@ -11,9 +11,10 @@ help:
 	@echo "  import     Import JSON to SQLite database"
 	@echo "  generate   Generate README.md from database"
 	@echo "  check      Check all URLs for broken links"
-	@echo "  github     Fetch GitHub stats for all repos"
+	@echo "  update     Fetch GitHub stats for all repos"
 	@echo "  stale      Find stale/unmaintained projects"
 	@echo "  stats      Show database statistics"
+	@echo "  report     Generate HTML report"
 	@echo "  lint       Run ruff linter"
 	@echo "  format     Format code with ruff"
 	@echo "  clean      Remove generated files"
@@ -41,7 +42,7 @@ import:
 check:
 	@$(CURATOR) check
 
-github:
+update:
 	@$(CURATOR) github
 
 stale:
@@ -54,4 +55,8 @@ generate:
 	@$(CURATOR) import
 	@$(CURATOR) generate -o README.md -f
 	@command -v rumdl >/dev/null 2>&1 && rumdl fmt README.md || true
+
+report:
+	@$(CURATOR) import
+	@$(CURATOR) report -f
 

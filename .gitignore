@@ -6,6 +6,9 @@ __pycache__
 # Database
 *.db
 
+# Build output
+build/
+
 # IDE
 .idea/
 .vscode/
