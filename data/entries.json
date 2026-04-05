@@ -222,7 +222,7 @@
       "name": "dplug",
       "category": "plugins",
       "desc": "Audio plugin framework. VST2/VST3/AU/AAX/LV2 for Linux/macOS/Windows.",
-      "url": "https://dplug.org",
+      "url": null,
       "repo": "https://github.com/AuburnSounds/Dplug"
     },
     {
@@ -236,7 +236,7 @@
       "name": "essentia",
       "category": "analysis",
       "desc": "C++ library for audio and music analysis, description and synthesis.",
-      "url": "http://essentia.upf.edu",
+      "url": null,
       "repo": "https://github.com/MTG/essentia"
     },
     {
@@ -426,7 +426,7 @@
       "category": "dsp",
       "desc": "Pippi is a library of computer music modules for python.",
       "url": "https://pippi.world",
-      "repo": "https://github.com/luvsound/pippi"
+      "repo": "https://git.sr.ht/~hecanjog/pippi"
     },
     {
       "name": "plebtracker",
@@ -593,7 +593,7 @@
       "name": "resampy",
       "category": "resampling",
       "desc": "A python module for efficient time-series resampling",
-      "url": "https://resampy.readthedocs.io/en/latest",
+      "url": "https://resampy.readthedocs.io/en/stable/",
       "repo": "https://github.com/bmcfee/resampy"
     },
     {
@@ -684,14 +684,14 @@
       "name": "supriya",
       "category": "supercollider",
       "desc": "A Python API for SuperCollider",
-      "url": "http://josiahwolfoberholtzer.com/supriya/",
-      "repo": "https://github.com/josiah-wolf-oberholtzer/supriya"
+      "url": "https://supriya-project.github.io/supriya/",
+      "repo": "https://github.com/supriya-project/supriya"
     },
     {
       "name": "synchroton",
       "category": "livecoding",
       "desc": "A graph-oriented live coding language written in python.",
-      "url": "https://synchroton.thatother.dev",
+      "url": null,
       "repo": "https://github.com/ThatOtherAndrew/Synchrotron"
     },
     {
@@ -705,7 +705,7 @@
       "name": "timeside",
       "category": "analysis",
       "desc": "Scalable audio processing framework and server written in Python",
-      "url": "https://timeside.ircam.fr/docs",
+      "url": "https://timeside.ircam.fr/docs/",
       "repo": "https://github.com/Parisson/TimeSide"
     },
     {

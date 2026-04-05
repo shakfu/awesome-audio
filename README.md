@@ -4,7 +4,7 @@
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-This list contains **102** projects across **34** categories.
+This list contains **101** projects across **34** categories.
 
 *Last updated: 2026-04-05*
 
@@ -67,11 +67,11 @@ This list contains **102** projects across **34** categories.
 
 - **[crepe](https://github.com/marl/crepe)** - A Convolutional REpresentation for Pitch Estimation.
 
-- **[essentia](http://essentia.upf.edu)** - C++ library for audio and music analysis, description and synthesis.
+- **[essentia](https://github.com/MTG/essentia)** - C++ library for audio and music analysis, description and synthesis.
 
 - **[librosa](https://librosa.org)** - Python library for audio and music analysis
 
-- **[timeside](https://timeside.ircam.fr/docs)** - Scalable audio processing framework and server written in Python
+- **[timeside](https://timeside.ircam.fr/docs/)** - Scalable audio processing framework and server written in Python
 
 
 ## Audio Framework
@@ -147,8 +147,6 @@ This list contains **102** projects across **34** categories.
 
 - **[cycdp](https://github.com/shakfu/cycdp)** - Python bindings for the CDP8(Composers Desktop Project) audio processing library
 
-- **[cydsp](https://github.com/shakfu/cydsp)** - Python DSP toolkit wrapping a number of popular C++ libraries
-
 - **[dsp-graph](https://github.com/shakfu/dsp-graph)** - A Python DSL for defining DSP signal graphs, compiling them to optimized C++
 
 - **[nanodsp](https://github.com/shakfu/nanodsp)** - Python DSP toolkit wrapping a number of popular C++ libraries
@@ -189,7 +187,7 @@ This list contains **102** projects across **34** categories.
 
 - **[strudel](https://strudel.cc)** - Web-based environment for live coding algorithmic patterns.
 
-- **[synchroton](https://synchroton.thatother.dev)** - A graph-oriented live coding language written in python.
+- **[synchroton](https://github.com/ThatOtherAndrew/Synchrotron)** - A graph-oriented live coding language written in python.
 
 
 ## Looping
@@ -246,7 +244,7 @@ This list contains **102** projects across **34** categories.
 
 - **[cython-vst-loader](https://github.com/hq9000/cython-vst-loader)** - A cython-based loader for VST audio plugins.
 
-- **[dplug](https://dplug.org)** - Audio plugin framework. VST2/VST3/AU/AAX/LV2 for Linux/macOS/Windows.
+- **[dplug](https://github.com/AuburnSounds/Dplug)** - Audio plugin framework. VST2/VST3/AU/AAX/LV2 for Linux/macOS/Windows.
 
 - **[minihost](https://github.com/shakfu/minihost)** - A minimal python audio plugin host library for loading and processing VST3 and AudioUnit plugins.
 
@@ -267,7 +265,7 @@ This list contains **102** projects across **34** categories.
 
 ## Resampling
 
-- **[resampy](https://resampy.readthedocs.io/en/latest)** - A python module for efficient time-series resampling
+- **[resampy](https://resampy.readthedocs.io/en/stable/)** - A python module for efficient time-series resampling
 
 
 ## Sequencer
@@ -302,7 +300,7 @@ This list contains **102** projects across **34** categories.
 
 - **[python-supercollider](https://github.com/ideoforms/python-supercollider)** - Python client for the SuperCollider audio synthesis server
 
-- **[supriya](http://josiahwolfoberholtzer.com/supriya/)** - A Python API for SuperCollider
+- **[supriya](https://supriya-project.github.io/supriya/)** - A Python API for SuperCollider
 
 
 ## Synthesis
