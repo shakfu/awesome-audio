@@ -4,7 +4,7 @@
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-This list contains **100** projects across **34** categories.
+This list contains **102** projects across **34** categories.
 
 *Last updated: 2026-04-05*
 
@@ -151,6 +151,8 @@ This list contains **100** projects across **34** categories.
 
 - **[dsp-graph](https://github.com/shakfu/dsp-graph)** - A Python DSL for defining DSP signal graphs, compiling them to optimized C++
 
+- **[nanodsp](https://github.com/shakfu/nanodsp)** - Python DSP toolkit wrapping a number of popular C++ libraries
+
 - **[pippi](https://pippi.world)** - Pippi is a library of computer music modules for python.
 
 - **[pyo](http://ajaxsoundstudio.com/pyodoc/index.html)** - Pyo is a Python module written in C to help digital signal processing
@@ -231,6 +233,8 @@ This list contains **100** projects across **34** categories.
 - **[musicpy](https://musicpy.readthedocs.io/en/latest/)** - Musicpy is a music programming language in Python.
 
 - **[orca](https://github.com/hundredrabbits/Orca-c)** - Orca Live Programming Environment (C Port) with MIDI sequencing in the terminal.
+
+- **[psnd](https://github.com/shakfu/psnd)** - A polyglot editor & REPL for music programming languages.
 
 
 ## Music Theory
