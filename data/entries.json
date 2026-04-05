@@ -177,13 +177,6 @@
       "repo": "https://github.com/shakfu/cycsound"
     },
     {
-      "name": "cydsp",
-      "category": "dsp",
-      "desc": "Python DSP toolkit wrapping a number of popular C++ libraries",
-      "url": null,
-      "repo": "https://github.com/shakfu/cydsp"
-    },
-    {
       "name": "cyfaust",
       "category": "faust",
       "desc": "A cython wrapper of the faust interpreter with rtaudio support.",
@@ -380,6 +373,13 @@
       "repo": "https://github.com/Rainbow-Dreamer/musicpy"
     },
     {
+      "name": "nanodsp",
+      "category": "dsp",
+      "desc": "Python DSP toolkit wrapping a number of popular C++ libraries",
+      "url": null,
+      "repo": "https://github.com/shakfu/nanodsp"
+    },
+    {
       "name": "nanosynth",
       "category": "supercollider",
       "desc": "A python package which uses nanobind to embed supercollider's libscsynth",
@@ -441,6 +441,13 @@
       "desc": "Popsicle aims to bridge the JUCE c++ framework to python.",
       "url": "https://pypi.org/project/popsicle",
       "repo": "https://github.com/kunitoki/popsicle"
+    },
+    {
+      "name": "psnd",
+      "category": "music-programming",
+      "desc": "A polyglot editor & REPL for music programming languages.",
+      "url": null,
+      "repo": "https://github.com/shakfu/psnd"
     },
     {
       "name": "py2max",
