@@ -359,12 +359,37 @@ def load_and_validate(path: Path) -> ValidationResult:
 # =============================================================================
 
 
+@dataclass
+class ImportResult:
+    """Result of an import operation."""
+    prior_total: int = 0
+    added: int = 0
+    changed: int = 0
+    removed: int = 0
+    errors: list[str] = field(default_factory=list)
+
+    @property
+    def new_total(self) -> int:
+        return self.prior_total + self.added - self.removed
+
+
 def import_from_json(
     json_path: Path,
     db_path: Path,
     skip_duplicates: bool = True,
-) -> tuple[int, int, list[str]]:
-    """Import entries from JSON to database."""
+    purge_missing: bool = False,
+) -> ImportResult:
+    """Import entries from JSON to database.
+
+    Args:
+        json_path: Path to JSON file.
+        db_path: Path to SQLite database.
+        skip_duplicates: If True, skip entries that already exist in the DB.
+        purge_missing: If True, remove DB entries not present in JSON.
+
+    Returns:
+        ImportResult with prior_total, added, changed, removed, and errors.
+    """
     raw_entries = load_entries(json_path)
 
     result = validate_entries(raw_entries, json_path=json_path)
@@ -372,42 +397,50 @@ def import_from_json(
         errors = [
             f"{entry.get('name', 'UNKNOWN')}: {err}" for _, entry, err in result.errors
         ]
-        return 0, 0, errors
+        return ImportResult(errors=errors)
 
     conn = init_db(db_path)
     cursor = conn.cursor()
 
-    imported = 0
-    skipped = 0
-    errors = []
+    cursor.execute("SELECT COUNT(*) FROM entry")
+    prior_total = cursor.fetchone()[0]
+
+    res = ImportResult(prior_total=prior_total)
     processed_names = set()
 
     for entry in result.valid:
         name = entry["name"]
         if name in processed_names:
-            skipped += 1
             continue
         processed_names.add(name)
 
-        cursor.execute("SELECT id FROM entry WHERE name = ?", (name,))
+        cursor.execute(
+            "SELECT id, category, url, repo, description FROM entry WHERE name = ?",
+            (name,),
+        )
         existing = cursor.fetchone()
 
         if existing:
-            if skip_duplicates:
-                skipped += 1
-            else:
-                cursor.execute(
-                    """UPDATE entry SET category=?, url=?, repo=?, description=?
-                       WHERE name=?""",
-                    (
-                        entry["category"],
-                        entry.get("url"),
-                        entry.get("repo"),
-                        entry["desc"],
-                        name,
-                    ),
+            if not skip_duplicates:
+                new_vals = (
+                    entry["category"],
+                    entry.get("url"),
+                    entry.get("repo"),
+                    entry["desc"],
                 )
-                imported += 1
+                old_vals = (
+                    existing["category"],
+                    existing["url"],
+                    existing["repo"],
+                    existing["description"],
+                )
+                if new_vals != old_vals:
+                    cursor.execute(
+                        """UPDATE entry SET category=?, url=?, repo=?, description=?
+                           WHERE name=?""",
+                        (*new_vals, name),
+                    )
+                    res.changed += 1
         else:
             cursor.execute(
                 """INSERT INTO entry (name, category, url, repo, description)
@@ -420,11 +453,23 @@ def import_from_json(
                     entry["desc"],
                 ),
             )
-            imported += 1
+            res.added += 1
+
+    if purge_missing:
+        cursor.execute("SELECT name FROM entry")
+        db_names = {row["name"] for row in cursor.fetchall()}
+        to_remove = db_names - processed_names
+        if to_remove:
+            placeholders = ",".join("?" for _ in to_remove)
+            cursor.execute(
+                f"DELETE FROM entry WHERE name IN ({placeholders})",
+                list(to_remove),
+            )
+            res.removed = len(to_remove)
 
     conn.commit()
     conn.close()
-    return imported, skipped, errors
+    return res
 
 
 def export_to_json(db_path: Path, output_path: Path) -> int:
@@ -1827,14 +1872,16 @@ def cmd_import(args: argparse.Namespace) -> int:
     db_file = Path(args.db) if args.db else DEFAULT_DB
 
     print(f"Importing from {json_file} to {db_file}...")
-    imported, skipped, errors = import_from_json(json_file, db_file, not args.update)
+    res = import_from_json(json_file, db_file, not args.update)
 
-    print(f"Imported: {imported}")
-    print(f"Skipped: {skipped}")
+    print(f"Prior total: {res.prior_total}")
+    print(f"Added: {res.added}")
+    print(f"Changed: {res.changed}")
+    print(f"New total: {res.new_total}")
 
-    if errors:
+    if res.errors:
         cprint("Errors:", Color.RED)
-        for err in errors:
+        for err in res.errors:
             print(f"  {err}")
         return 1
 
@@ -2508,6 +2555,62 @@ def cmd_update(args: argparse.Namespace) -> int:
         return 1
 
 
+def cmd_sync(args: argparse.Namespace) -> int:
+    """Sync entries.json to database and regenerate README.
+
+    Validates, sorts entries.json, imports (with upsert) to SQLite,
+    and regenerates README.md.
+    """
+    json_file = Path(args.json) if args.json else DEFAULT_JSON
+    db_file = Path(args.db) if args.db else DEFAULT_DB
+    output = Path(args.output) if args.output else _PROJECT_ROOT / "README.md"
+
+    # Step 1: Validate
+    print("Validating entries...")
+    raw_entries = load_entries(json_file)
+    result = validate_entries(raw_entries, json_path=json_file)
+    if not result.is_valid:
+        cprint("Validation failed:", Color.RED)
+        for _, entry, err in result.errors:
+            print(f"  {entry.get('name', 'UNKNOWN')}: {err}")
+        return 1
+    cprint(f"Validated {len(result.valid)} entries.", Color.GREEN)
+
+    # Step 2: Sort entries.json
+    print("Sorting entries...")
+    num_categories, num_entries = sort_entries_file(json_file)
+    cprint(f"Sorted {num_categories} categories and {num_entries} entries.", Color.GREEN)
+
+    # Step 3: Import to DB (upsert mode)
+    print(f"Importing to {db_file}...")
+    res = import_from_json(
+        json_file, db_file, skip_duplicates=False, purge_missing=True
+    )
+    if res.errors:
+        cprint("Import errors:", Color.RED)
+        for err in res.errors:
+            print(f"  {err}")
+        return 1
+    parts = [f"Prior total: {res.prior_total}"]
+    if res.added:
+        parts.append(f"added: {res.added}")
+    if res.changed:
+        parts.append(f"changed: {res.changed}")
+    if res.removed:
+        parts.append(f"removed: {res.removed}")
+    parts.append(f"New total: {res.new_total}")
+    cprint(", ".join(parts) + ".", Color.GREEN)
+
+    # Step 4: Generate README
+    print(f"Generating {output}...")
+    generate_readme(db_file, output_path=output, force=True)
+    cprint(f"Generated README at {output}.", Color.GREEN)
+
+    print()
+    cprint("Sync complete.", Color.GREEN)
+    return 0
+
+
 # =============================================================================
 # Main Entry Point
 # =============================================================================
@@ -2715,6 +2818,18 @@ def main() -> int:
     p.add_argument("-j", "--json", help="Path to JSON file")
     p.add_argument("--db", help="Path to SQLite database")
     p.set_defaults(func=cmd_update)
+
+    # sync
+    p = subparsers.add_parser(
+        "sync",
+        help="Validate, sort, import, and regenerate README in one step",
+    )
+    p.add_argument("-j", "--json", help="Path to JSON file")
+    p.add_argument("--db", help="Path to SQLite database")
+    p.add_argument(
+        "-o", "--output", help="Output README path (default: README.md)"
+    )
+    p.set_defaults(func=cmd_sync)
 
     args = parser.parse_args()
 

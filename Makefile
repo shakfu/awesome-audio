@@ -1,4 +1,4 @@
-.PHONY: help clean lint format validate sort import check update stale stats generate report
+.PHONY: help clean lint format validate sort import check update stale stats generate report sync
 
 CURATOR := python3 scripts/curator.py
 
@@ -6,6 +6,7 @@ help:
 	@echo "Usage: make <target>"
 	@echo ""
 	@echo "Targets:"
+	@echo "  sync       Validate, sort, import, and regenerate README"
 	@echo "  validate   Validate entries.json"
 	@echo "  sort       Sort entries.json alphabetically"
 	@echo "  import     Import JSON to SQLite database"
@@ -50,6 +51,10 @@ stale:
 
 stats:
 	@$(CURATOR) stats
+
+sync:
+	@$(CURATOR) sync
+	@command -v rumdl >/dev/null 2>&1 && rumdl fmt README.md || true
 
 generate:
 	@$(CURATOR) import

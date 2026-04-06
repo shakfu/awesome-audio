@@ -289,6 +289,13 @@
       "repo": "https://github.com/ideoforms/isobar"
     },
     {
+      "name": "libmonome",
+      "category": "monome",
+      "desc": "A library for easy interaction with monome devices.",
+      "url": null,
+      "repo": "https://github.com/monome/libmonome"
+    },
+    {
       "name": "librosa",
       "category": "analysis",
       "desc": "Python library for audio and music analysis",
@@ -301,6 +308,13 @@
       "desc": "A tiny command-line midi sequencer for live coding.",
       "url": null,
       "repo": "https://github.com/pd3v/line"
+    },
+    {
+      "name": "live-midi-scripts",
+      "category": "ableton",
+      "desc": "Decompiled Ableton Live midi remote scripts.",
+      "url": null,
+      "repo": "https://github.com/shakfu/live-midi-scripts"
     },
     {
       "name": "looper",
@@ -595,6 +609,13 @@
       "desc": "A python module for efficient time-series resampling",
       "url": "https://resampy.readthedocs.io/en/stable/",
       "repo": "https://github.com/bmcfee/resampy"
+    },
+    {
+      "name": "rtrack",
+      "category": "tracker",
+      "desc": "A MIDI/Audio tracker written in Rust with both TUI and GUI frontends.",
+      "url": null,
+      "repo": "https://github.com/shakfu/rtrack"
     },
     {
       "name": "runal",
