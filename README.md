@@ -80,6 +80,7 @@ This list contains **118** projects across **38** categories.
 - **[librosa](https://librosa.org)** - Python library for audio and music analysis
 
 - **[timeside](https://timeside.ircam.fr/docs/)** - Scalable audio processing framework and server written in Python
+- **[Browser Music Analysis Kit](https://github.com/j022315051/browser-music-analysis-kit)** - Dependency-free JavaScript helpers for browser-side pitch, key, Camelot, and timestamped chord analysis.
 
 
 ## Api
