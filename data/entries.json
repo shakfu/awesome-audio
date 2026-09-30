@@ -804,6 +804,13 @@
       "repo": "https://github.com/tidalcycles/strudel"
     },
     {
+      "name": "subsequence",
+      "category": "music-programming",
+      "desc": "A stateful generative MIDI sequencer and algorithmic composition engine for Python. Euclidean rhythms, cellular automata, L-systems, Markov chains. Patterns that evolve, remember, and react.",
+      "url": "https://subsystem.co/subsequence",
+      "repo": "https://github.com/simonholliday/subsequence"
+    },
+    {
       "name": "supriya",
       "category": "supercollider",
       "desc": "A Python API for SuperCollider",

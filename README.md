@@ -4,9 +4,9 @@
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-This list contains **118** projects across **38** categories.
+This list contains **119** projects across **38** categories.
 
-*Last updated: 2026-09-19*
+*Last updated: 2026-09-30*
 
 ## Contents
 
@@ -269,6 +269,8 @@ This list contains **118** projects across **38** categories.
 
 - **[psnd](https://github.com/shakfu/psnd)** - A polyglot editor & REPL for music programming languages.
 
+- **[subsequence](https://subsystem.co/subsequence)** - A stateful generative MIDI sequencer and algorithmic composition engine for Python. Euclidean rhythms, cellular automata, L-systems, Markov chains. Patterns that evolve, remember, and react.
+
 
 ## Music Theory
 
@@ -413,3 +415,4 @@ Contributions welcome! Please read the contribution guidelines first.
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
 
 To the extent possible under law, the authors have waived all copyright and related rights to this work.
+
