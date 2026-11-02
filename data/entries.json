@@ -76,6 +76,13 @@
       "repo": "https://github.com/icaroferre/AudioHit"
     },
     {
+      "name": "audiolens",
+      "category": "visualization",
+      "desc": "Audio playback, per-channel waveforms and spectrogram inspection inside VS Code.",
+      "url": null,
+      "repo": "https://github.com/SimZhou/vscode-audiolens"
+    },
+    {
       "name": "audiomentations",
       "category": "augmentation",
       "desc": "A Python library for audio data augmentation. Inspired by albumentations. Useful for machine learning.",

@@ -4,9 +4,9 @@
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 
-This list contains **119** projects across **38** categories.
+This list contains **120** projects across **38** categories.
 
-*Last updated: 2026-09-30*
+*Last updated: 2026-11-02*
 
 ## Contents
 
@@ -391,6 +391,8 @@ This list contains **119** projects across **38** categories.
 
 ## Visualization
 
+- **[audiolens](https://github.com/SimZhou/vscode-audiolens)** - Audio playback, per-channel waveforms and spectrogram inspection inside VS Code.
+
 - **[madmom](https://github.com/cpjku/madmom)** - Madmom is an audio signal processing library written in Python with a strong focus on music information retrieval (MIR) tasks.
 
 - **[visual_midi](https://alexandredubreuil.com/publications/2020-09-13-introducing-visual-midi-for-pianoroll-visualization/)** - Converts a pretty midi sequence to a bokeh plot.
@@ -415,4 +417,3 @@ Contributions welcome! Please read the contribution guidelines first.
 [![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
 
 To the extent possible under law, the authors have waived all copyright and related rights to this work.
-
