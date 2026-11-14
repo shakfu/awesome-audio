@@ -372,6 +372,7 @@ This list contains **120** projects across **38** categories.
 - **[plebtracker](https://github.com/danfrz/PLEBTracker)** - Ncurses based audio tracker program inspired by goattracker and milkytracker
 
 - **[rtrack](https://github.com/shakfu/rtrack)** - A MIDI/Audio tracker written in Rust with both TUI and GUI frontends.
+- [FM-1 Emulator](https://fm1-emulator.atst.tools/) - Free browser emulator for the M-VAVE FM-1 pocket synth; plays stock and 200+ community firmwares
 
 
 ## Utility
